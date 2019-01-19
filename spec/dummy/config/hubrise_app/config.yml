@@ -1,0 +1,8 @@
+development:
+  hubrise_client_id:     '1.clients.localhost'
+  hubrise_client_secret: '1'
+  hubrise_oauth_host:    'localhost'
+  hubrise_oauth_port:    4003
+  hubrise_api_host:      'localhost'
+  hubrise_api_port:      4000
+  hubrise_use_https:     false
