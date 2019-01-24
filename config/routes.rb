@@ -1,3 +1,7 @@
 HubriseApp::Engine.routes.draw do
-  root "application#root"
+  namespace :oauth_callback do
+    get :connect
+    get :authorize
+    get :login
+  end
 end

@@ -1,0 +1,45 @@
+module HubriseApp
+  class OauthController < ApplicationController
+    before_action :ensure_authenticated!, only: :authorize_callback
+
+    def login_callback
+      hr_user = HrUser.refresh_or_create_via_api_client(api_client_from_oauth_code)
+      login(hr_user)
+      redirect_to(hubrise_open_path)
+    end
+
+    def connect_callback
+      @current_hr_app_instance = HrAppInstance.refresh_or_create_via_api_client(api_client_from_oauth_code)
+      handle_hr_app_instance_connection(@current_hr_app_instance)
+
+      if logged_in?
+        current_hr_user.assign_hr_app_instance(@current_hr_app_instance)
+        redirect_to(hubrise_open_path)
+      else
+        redirect_to(hubrise_oauth_login_url)
+      end
+    end
+
+    # authorize access to specific app_instance (expirable)
+    def authorize_callback
+      if current_hr_app_instance
+        current_hr_user.assign_hr_app_instance(current_hr_app_instance)
+        redirect_to(hubrise_open_path)
+      else
+        render(plain: 'Something went wrong. Please try to reinstall the app')
+      end
+    end
+
+    protected
+
+    def current_hr_app_instance
+      @current_hr_app_instance ||= HrAppInstance.where(hr_id: api_client_from_oauth_code.app_instance_id).take
+    end
+
+    def api_client_from_oauth_code
+      @api_client_from_oauth_code ||= HubriseGateway.build_api_client_from_authorization_code(params[:code])
+    end
+
+    def handle_hr_app_instance_connection(hr_app_instance); end
+  end
+end
