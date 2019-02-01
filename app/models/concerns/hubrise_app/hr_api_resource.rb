@@ -1,19 +1,19 @@
 module HubriseApp::HrApiResource
   REFRESH_THRESHOLD = 1.minute
 
-  def stale?(time: Time.now)
-    refreshed_at.nil? || time - refreshed_at > REFRESH_THRESHOLD
+  def stale?
+    refreshed_at.nil? || Time.now - refreshed_at > REFRESH_THRESHOLD
   end
 
-  def refresh_via_api_client(api_client, time: Time.now)
+  def refresh_via_api_client(api_client)
     refresh_with(
       self.class.fetch_hr_attrs(api_client, self.hr_id),
-      time: time
+      time: Time.now
     )
   end
 
-  def refresh_with(attrs, time: Time.now)
-    update!(attrs.merge(refreshed_at: time))
+  def refresh_with(attrs)
+    update!(attrs.merge(refreshed_at: Time.now))
   end
 
   def self.included(base)
