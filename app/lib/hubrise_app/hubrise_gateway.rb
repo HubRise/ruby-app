@@ -19,17 +19,17 @@ class HubriseApp::HubriseGateway
     end
 
     def build_api_client_from_authorization_code(authorization_code)
-      api_client.tap do |api_client|
+      build_api_client.tap do |api_client|
         api_client.authorize!(authorization_code)
       end
     end
 
     def build_login_authorization_url(redirect_uri)
-      api_client.build_authorization_url(redirect_uri, HUBRISE_LOGIN_SCOPE)
+      build_api_client.build_authorization_url(redirect_uri, HUBRISE_LOGIN_SCOPE)
     end
 
     def build_app_authorization_url(hr_app_instance_id, redirect_uri)
-      api_client.build_authorization_url(redirect_uri, nil, app_instance_id: hr_app_instance_id)
+      build_api_client.build_authorization_url(redirect_uri, nil, app_instance_id: hr_app_instance_id)
     end
   end
 end
