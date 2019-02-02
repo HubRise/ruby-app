@@ -23,8 +23,8 @@ RSpec.describe HubriseApp::HrAccount do
         )
       end
 
-      it "refreshes existing account" do
-        hr_account = create(:hr_account, hr_id: "x_account_id")
+      it "refreshes existing old account" do
+        hr_account = create(:hr_account, hr_id: "x_account_id", refreshed_at: time - 1.year)
 
         expect { subject }.to_not change(described_class, :count)
         expect(hr_account.reload).to have_attributes(

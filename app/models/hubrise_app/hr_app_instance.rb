@@ -16,11 +16,6 @@ module HubriseApp
       )
     end
 
-    def refresh(api_client = api_client)
-      hr_account&.refresh_via_api_client(api_client)
-      hr_location&.refresh_via_api_client(api_client)
-    end
-
     def self.refresh_or_create_via_api_client(api_client)
       hr_app_instance = find_or_initialize_by(hr_id: api_client.app_instance_id)
       hr_account      = api_client.account_id   && HrAccount.refresh_or_create_via_api_client(api_client, api_client.account_id)

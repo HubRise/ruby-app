@@ -23,7 +23,7 @@ RSpec.describe HubriseApp::HrLocation do
     end
 
     it "refreshes existing location" do
-      hr_location = create(:hr_location, hr_id: "x_location_id")
+      hr_location = create(:hr_location, hr_id: "x_location_id", refreshed_at: time - 1.year)
 
       expect { subject }.to_not change(described_class, :count)
       expect(hr_location.reload).to have_attributes(
