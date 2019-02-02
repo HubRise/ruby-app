@@ -39,11 +39,13 @@ module HubriseApp
       end
 
       def default_url_options
-        super.merge(app_instance_id: hr_app_instance_id || current_hr_app_instance.hr_id)
+        super.merge(app_instance_id: hr_app_instance_id || current_hr_app_instance&.hr_id)
       end
 
       def current_hr_app_instance
-        @hr_app_instance ||= current_hr_user.hr_app_instances.where(hr_id: hr_app_instance_id).includes(:hr_account, :hr_location).take
+        @hr_app_instance ||= current_hr_user && begin
+          current_hr_user.hr_app_instances.where(hr_id: hr_app_instance_id).includes(:hr_account, :hr_location).take
+        end
       end
     
       def hubrise_oauth_login_url

@@ -1,9 +1,9 @@
 module StubHostControllerUrlHelpers
-  def strub_host_controller_url_helpers
-    HubriseApp::ApplicationController.include(HostUrlHelpers)
+  def stub_host_app_url_helpers
+    HubriseApp::ApplicationController.include(HostAppUrlHelpers)
   end
 
-  module HostUrlHelpers
+  module HostAppUrlHelpers
     def hubrise_oauth_login_callback_url
       "http://hubrise_oauth_login_callback_url"
     end

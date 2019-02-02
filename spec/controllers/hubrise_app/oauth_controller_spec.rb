@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe HubriseApp::OauthController, type: :controller do
-  strub_host_controller_url_helpers
+  stub_host_app_url_helpers
 
   let(:hr_user) { create(:hr_user) }
   let!(:api_client) do
@@ -55,8 +55,9 @@ RSpec.describe HubriseApp::OauthController, type: :controller do
       get :authorize_callback, params: { code: "some_code" }
     end
 
-    it "redirects to oauth login if not logged in" do
-      expect(subject).to redirect_to("http://dummy.hubrise.host:4003/oauth2/v1/authorize?redirect_uri=http%3A%2F%2Fhubrise_oauth_login_callback_url&scope=profile_with_email&client_id=dummy_id")
+    it "calls #ensure_authenticated!" do
+      expect(controller).to receive(:ensure_authenticated!)
+      subject
     end
 
     it "assigns app instance if exists" do
