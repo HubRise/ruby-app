@@ -6,10 +6,7 @@ module HubriseApp::HrApiResource
   end
 
   def refresh_via_api_client(api_client)
-    refresh_with(
-      self.class.fetch_hr_attrs(api_client, self.hr_id),
-      time: Time.now
-    )
+    refresh_with(self.class.fetch_hr_attrs(api_client, self.hr_id))
   end
 
   def refresh_with(attrs)

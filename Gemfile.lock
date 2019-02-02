@@ -154,6 +154,7 @@ GEM
       sprockets (>= 3.0.0)
     thor (0.20.3)
     thread_safe (0.3.6)
+    timecop (0.9.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     webmock (3.5.1)
@@ -175,6 +176,7 @@ DEPENDENCIES
   mysql2
   pry-rails
   rspec-rails
+  timecop
   webmock
 
 BUNDLED WITH

@@ -11,4 +11,5 @@ group :test do
   gem "pry-rails"
   gem "webmock"
   gem "database_cleaner"
+  gem "timecop"
 end

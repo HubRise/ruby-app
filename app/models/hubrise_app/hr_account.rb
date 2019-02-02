@@ -12,7 +12,7 @@ class HubriseApp::HrAccount < HubriseApp::ApplicationRecord
                         api_client.get_location(api_client.location_id).data['account']
                       else
                         api_client.get_account(hr_id).data
-                      end.except('id')
+                      end.except("id")
       }
     end
   end

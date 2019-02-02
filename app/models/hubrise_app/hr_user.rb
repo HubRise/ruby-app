@@ -7,7 +7,7 @@ module HubriseApp
 
     include HubriseApp::HrApiResource
     class << self
-      def fetch_hr_attrs(api_client, hr_id = nil)
+      def fetch_hr_attrs(api_client)
         data = api_client.get_user.data
         {
           hr_id:           data.delete('id'),
@@ -16,7 +16,7 @@ module HubriseApp
         }
       end
 
-      def refresh_or_create_via_api_client(api_client, hr_id = nil)
+      def refresh_or_create_via_api_client(api_client)
         hr_attrs  = fetch_hr_attrs(api_client)
         hr_user   = find_or_initialize_by(hr_id: hr_attrs[:hr_id])
         hr_user.refresh_with(hr_attrs)
