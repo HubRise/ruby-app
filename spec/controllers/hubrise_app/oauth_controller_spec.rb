@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe HubriseApp::OauthController, type: :controller do
-  stub_host_app_url_helpers
+RSpec.describe HubriseApp::Override::OauthController, type: :controller do
+  routes { HubriseApp::Engine.routes }
 
   let(:hr_user) { create(:hr_user) }
   let!(:api_client) do
@@ -22,7 +22,7 @@ RSpec.describe HubriseApp::OauthController, type: :controller do
     end
 
     it "redirects to open path" do
-      expect(subject).to redirect_to("/hubrise_open_path")
+      expect(subject).to redirect_to("/hubrise_open")
     end
   end
 
@@ -41,12 +41,12 @@ RSpec.describe HubriseApp::OauthController, type: :controller do
     end
 
     it "redirects to oauth login if not logged in" do
-      expect(subject).to redirect_to("http://dummy.hubrise.host:4003/oauth2/v1/authorize?redirect_uri=http%3A%2F%2Fhubrise_oauth_login_callback_url&scope=profile_with_email&client_id=dummy_id")
+      expect(subject).to redirect_to("http://dummy.hubrise.host:4003/oauth2/v1/authorize?redirect_uri=http%3A%2F%2Ftest.host%2Fhubrise_oauth%2Flogin_callback%3Fapp_instance_id%3Dref_16&scope=profile_with_email&client_id=dummy_id")
     end
 
     it "redirects to open path if logged in" do
       session[:user_id] = hr_user.id
-      expect(subject).to redirect_to("/hubrise_open_path")
+      expect(subject).to redirect_to("/hubrise_open?app_instance_id=#{hr_app_instance.hr_id}")
     end
   end
 

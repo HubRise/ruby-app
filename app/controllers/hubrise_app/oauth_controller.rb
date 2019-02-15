@@ -5,7 +5,7 @@ module HubriseApp
     def login_callback
       hr_user = HrUser.refresh_or_create_via_api_client(api_client_from_oauth_code)
       login(hr_user)
-      redirect_to(hubrise_open_path)
+      redirect_to(main_app.hubrise_open_path)
     end
 
     def connect_callback
@@ -14,9 +14,9 @@ module HubriseApp
 
       if logged_in?
         current_hr_user.assign_hr_app_instance(@current_hr_app_instance)
-        redirect_to(hubrise_open_path)
+        redirect_to(main_app.hubrise_open_path)
       else
-        redirect_to(hubrise_oauth_login_url)
+        redirect_to(build_hubrise_oauth_login_url)
       end
     end
 
@@ -24,7 +24,7 @@ module HubriseApp
     def authorize_callback
       if current_hr_app_instance
         current_hr_user.assign_hr_app_instance(current_hr_app_instance)
-        redirect_to(hubrise_open_path)
+        redirect_to(main_app.hubrise_open_path)
       else
         render(plain: 'Something went wrong. Please try to reinstall the app')
       end

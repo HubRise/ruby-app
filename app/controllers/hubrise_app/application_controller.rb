@@ -27,7 +27,7 @@ module HubriseApp
       end
       
       def ensure_authenticated!
-        redirect_to(hubrise_oauth_login_url) unless logged_in?
+        redirect_to(build_hubrise_oauth_login_url) unless logged_in?
       end
 
       ##############
@@ -48,15 +48,15 @@ module HubriseApp
         end
       end
     
-      def hubrise_oauth_login_url
+      def build_hubrise_oauth_login_url
         HubriseGateway.build_login_authorization_url(
-          hubrise_oauth_login_callback_url
+          hubrise_app.hubrise_oauth_login_callback_url
         )
       end
 
-      def hubrise_oauth_authorize_url
+      def build_hubrise_oauth_authorize_url
         HubriseGateway.build_app_authorization_url(hr_app_instance_id,
-          hubrise_oauth_authorize_callback_url
+          hubrise_app.hubrise_oauth_authorize_callback_url
         )
       end
 
@@ -64,7 +64,7 @@ module HubriseApp
         if hr_app_instance_id.blank?
           render(plain: 'Something went wrong. Please try to reopen from Hubrise Dashboard.')
         elsif current_hr_app_instance.nil?
-          redirect_to(hubrise_oauth_authorize_url)
+          redirect_to(build_hubrise_oauth_authorize_url)
         end
       end
     end
