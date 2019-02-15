@@ -1,28 +1,5 @@
-# HubriseApp
-Short description and motivation.
-
-## Usage
-How to use my plugin.
-
-## Installation
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'hubrise_app'
-```
-
-And then execute:
-```bash
-$ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install hubrise_app
-```
-
-## Contributing
-Contribution directions go here.
+## Customization
+To override `oauth_controller` add `controllers/hubrise_app/override/oauth_controller.rb` to the host app
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
