@@ -4,12 +4,12 @@ module HubriseApp
     before_action :ensure_hr_app_instance_found!
   
     def event
-      yield if block_given?
+      Services::HandleEvent.run(current_hr_app_instance, params.permit!.to_h)
       head 200
     end
 
     def disconnect
-      yield if block_given?
+      Services::DisconnectAppInstance.run(current_hr_app_instance)
       head 200
     end
 

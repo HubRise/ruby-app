@@ -31,6 +31,7 @@ RSpec.describe HubriseApp::Override::OauthController, type: :controller do
 
     subject do
       expect(HubriseApp::HrAppInstance).to receive(:refresh_or_create_via_api_client).with(api_client).and_return(hr_app_instance)
+      expect(HubriseApp::Services::ConnectAppInstance).to receive(:run).with(hr_app_instance)
       get :connect_callback, params: { code: "some_code" }
     end
 
@@ -41,7 +42,12 @@ RSpec.describe HubriseApp::Override::OauthController, type: :controller do
     end
 
     it "redirects to oauth login if not logged in" do
-      expect(subject).to redirect_to("http://dummy.hubrise.host:4003/oauth2/v1/authorize?redirect_uri=http%3A%2F%2Ftest.host%2Fhubrise_oauth%2Flogin_callback%3Fapp_instance_id%3Dref_16&scope=profile_with_email&client_id=dummy_id")
+      expect(subject).to redirect_to(
+        "http://dummy.hubrise.host:4003/oauth2/v1/authorize?" +
+          "redirect_uri=#{CGI.escape('http://test.host/hubrise_oauth/login_callback?app_instance_id=' + hr_app_instance.hr_id)}&" +
+          "scope=profile_with_email&" +
+          "client_id=dummy_id"
+      )
     end
 
     it "redirects to open path if logged in" do

@@ -9,11 +9,12 @@ module HubriseApp
     end
 
     def connect_callback
-      @current_hr_app_instance = HrAppInstance.refresh_or_create_via_api_client(api_client_from_oauth_code)
-      yield if block_given?
+      @hr_app_instance = HrAppInstance.refresh_or_create_via_api_client(api_client_from_oauth_code)
+
+      Services::ConnectAppInstance.run(current_hr_app_instance)
 
       if logged_in?
-        current_hr_user.assign_hr_app_instance(@current_hr_app_instance)
+        current_hr_user.assign_hr_app_instance(current_hr_app_instance)
         redirect_to(main_app.hubrise_open_path)
       else
         redirect_to(build_hubrise_oauth_login_url)
@@ -33,7 +34,7 @@ module HubriseApp
     protected
 
     def current_hr_app_instance
-      @current_hr_app_instance ||= HrAppInstance.where(hr_id: api_client_from_oauth_code.app_instance_id).take
+      @hr_app_instance ||= HrAppInstance.where(hr_id: api_client_from_oauth_code.app_instance_id).take
     end
 
     def api_client_from_oauth_code
