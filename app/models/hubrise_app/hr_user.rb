@@ -30,3 +30,5 @@ module HubriseApp
     end
   end
 end
+
+HubriseApp::HrUser.include(HubriseApp::Override::HrUser)
