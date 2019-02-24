@@ -10,7 +10,7 @@ module HubriseApp
 
     def connect_callback
       @current_hr_app_instance = HrAppInstance.refresh_or_create_via_api_client(api_client_from_oauth_code)
-      handle_hr_app_instance_connection(@current_hr_app_instance)
+      yield if block_given?
 
       if logged_in?
         current_hr_user.assign_hr_app_instance(@current_hr_app_instance)
@@ -39,7 +39,5 @@ module HubriseApp
     def api_client_from_oauth_code
       @api_client_from_oauth_code ||= HubriseGateway.build_api_client_from_authorization_code(params[:code])
     end
-
-    def handle_hr_app_instance_connection(hr_app_instance); end
   end
 end
