@@ -4,4 +4,9 @@ HubriseApp::Engine.routes.draw do
     get :login_callback
     get :authorize_callback
   end
+
+  namespace :hubrise_callback, controller: "/hubrise_app/override/callback" do
+    post :event
+    get  :disconnect
+  end
 end
