@@ -31,7 +31,7 @@ RSpec.describe HubriseApp::Override::OauthController, type: :controller do
 
     subject do
       expect(HubriseApp::HrAppInstance).to receive(:refresh_or_create_via_api_client).with(api_client).and_return(hr_app_instance)
-      expect(HubriseApp::Services::ConnectAppInstance).to receive(:run).with(hr_app_instance)
+      expect(HubriseApp::Services::ConnectAppInstance).to receive(:run).with(hr_app_instance, hubrise_callback_event_url: "http://test.host/hubrise_callback/event?app_instance_id=" + hr_app_instance.hr_id)
       get :connect_callback, params: { code: "some_code" }
     end
 

@@ -11,7 +11,7 @@ module HubriseApp
     def connect_callback
       @hr_app_instance = HrAppInstance.refresh_or_create_via_api_client(api_client_from_oauth_code)
 
-      Services::ConnectAppInstance.run(current_hr_app_instance)
+      Services::ConnectAppInstance.run(current_hr_app_instance, hubrise_callback_event_url: hubrise_callback_event_url)
 
       if logged_in?
         current_hr_user.assign_hr_app_instance(current_hr_app_instance)
