@@ -6,7 +6,7 @@ RSpec.describe HubriseApp::Override::CallbackController, type: :controller do
 
   describe "POST event" do
     it "delegates to HandleEvent service" do
-      expect(HubriseApp::Services::HandleEvent).to receive(:run).with(hr_app_instance, a_hash_including(key: "val"))
+      expect(HubriseApp::Services::HandleEvent).to receive(:run).and_return(nil)
       post :event, params: { key: "val", app_instance_id: "hr_id1" }
     end
 

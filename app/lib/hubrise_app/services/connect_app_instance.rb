@@ -1,5 +1,6 @@
 class HubriseApp::Services::ConnectAppInstance
-  def self.run(hr_app_instance); end
-end
+  prepend HubriseApp::Services::Override::ConnectAppInstance
 
-HubriseApp::Services::ConnectAppInstance.include(HubriseApp::Services::Override::ConnectAppInstance)
+  class << self; delegate :run, to: :new; end
+  def run(hr_app_instance); end
+end

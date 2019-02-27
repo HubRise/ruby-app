@@ -1,5 +1,7 @@
 module HubriseApp
   class HrUser < HubriseApp::ApplicationRecord
+    include HubriseApp::Override::HrUser
+
     self.table_name = :hr_users
 
     has_many :hr_user_app_instances, ->{ fresh }, primary_key: :hr_id
@@ -30,5 +32,3 @@ module HubriseApp
     end
   end
 end
-
-HubriseApp::HrUser.include(HubriseApp::Override::HrUser)
