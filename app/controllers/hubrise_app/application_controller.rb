@@ -1,7 +1,7 @@
 module HubriseApp
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :reset_session
-    helper_method :current_hr_user, :current_hr_app_instance
+    helper_method :current_hr_user, :current_hr_app_instance, :logged_in?
   
     protected
 
