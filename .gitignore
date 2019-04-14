@@ -1,8 +1,18 @@
+# Bundler
 .bundle/
+
+# Logfiles
 log/*.log
+
+# External dependencies
 pkg/
+
+# Specs
 spec/dummy/log/*.log
 spec/dummy/node_modules/
 spec/dummy/yarn-error.log
 spec/dummy/storage/
 spec/dummy/tmp/
+
+# IDE files
+/.idea
