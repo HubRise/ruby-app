@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gemspec
 
-gem "hubrise_ruby_lib", git: "https://github.com/hubrise/hubrise_ruby_lib.git", tag: "v0.0.20"
+gem "hubrise_ruby_lib", git: "https://github.com/hubrise/ruby-lib.git", tag: "v0.0.20"
 
 group :test do
   gem "rspec-rails"
