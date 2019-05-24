@@ -6,8 +6,9 @@ module HubriseApp::HrApiResource
   end
 
   def refresh_via_api_client(api_client)
-    return if !stale?
-    refresh_with(self.class.fetch_hr_attrs(api_client, self.hr_id))
+    return unless stale?
+
+    refresh_with(self.class.fetch_hr_attrs(api_client, hr_id))
   end
 
   def refresh_with(attrs)

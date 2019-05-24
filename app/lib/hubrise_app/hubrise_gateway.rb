@@ -1,5 +1,5 @@
 class HubriseApp::HubriseGateway
-  HUBRISE_LOGIN_SCOPE = 'profile_with_email'
+  HUBRISE_LOGIN_SCOPE = "profile_with_email".freeze
   HUBRISE_API_VERSION = :v1
 
   class << self
@@ -10,9 +10,9 @@ class HubriseApp::HubriseGateway
         params.merge(
           oauth_host: HubriseApp::CONFIG[:hubrise_oauth_host],
           oauth_port: HubriseApp::CONFIG[:hubrise_oauth_port],
-          api_host:   HubriseApp::CONFIG[:hubrise_api_host],
-          api_port:   HubriseApp::CONFIG[:hubrise_api_port],
-          use_https:  HubriseApp::CONFIG[:hubrise_use_https],
+          api_host: HubriseApp::CONFIG[:hubrise_api_host],
+          api_port: HubriseApp::CONFIG[:hubrise_api_port],
+          use_https: HubriseApp::CONFIG[:hubrise_use_https]
         )
       )
     end

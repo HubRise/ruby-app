@@ -30,7 +30,7 @@ class CreateBaseTables < ActiveRecord::Migration[5.2]
       t.string   :hr_access_token,  null: false
       t.datetime :refreshed_at,     null: false
     end
-  
+
     create_table :hr_user_app_instances do |t|
       t.string    :hr_user_id,         index: true
       t.string    :hr_app_instance_id, index: true
@@ -39,6 +39,6 @@ class CreateBaseTables < ActiveRecord::Migration[5.2]
 
     add_foreign_key :hr_user_app_instances, :hr_users, primary_key: :hr_id
     add_foreign_key :hr_user_app_instances, :hr_app_instances, primary_key: :hr_id
-    add_index :hr_user_app_instances, [:hr_user_id, :hr_app_instance_id, :refreshed_at], name: :index_user_app_instances, using: :btree
+    add_index :hr_user_app_instances, %i[hr_user_id hr_app_instance_id refreshed_at], name: :index_user_app_instances, using: :btree
   end
 end

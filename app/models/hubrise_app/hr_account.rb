@@ -7,12 +7,12 @@ class HubriseApp::HrAccount < HubriseApp::ApplicationRecord
       raise if api_client.account_id != hr_id
 
       {
-        hr_id:        hr_id,
-        hr_api_data:  if api_client.location_id
-                        api_client.get_location(api_client.location_id).data['account']
-                      else
-                        api_client.get_account(hr_id).data
-                      end.except("id")
+        hr_id: hr_id,
+        hr_api_data: if api_client.location_id
+                       api_client.get_location(api_client.location_id).data["account"]
+                     else
+                       api_client.get_account(hr_id).data
+                     end.except("id")
       }
     end
   end

@@ -8,6 +8,6 @@ class Object
   end
 
   def with_ref(string)
-    [string, '-', generate_ref].join
+    [string, "-", generate_ref].join
   end
 end

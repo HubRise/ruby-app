@@ -43,9 +43,9 @@ RSpec.describe HubriseApp::Override::OauthController, type: :controller do
 
     it "redirects to oauth login if not logged in" do
       expect(subject).to redirect_to(
-        "http://dummy.hubrise.host:4003/oauth2/v1/authorize?" +
-          "redirect_uri=#{CGI.escape('http://test.host/hubrise_oauth/login_callback?app_instance_id=' + hr_app_instance.hr_id)}&" +
-          "scope=profile_with_email&" +
+        "http://dummy.hubrise.host:4003/oauth2/v1/authorize?" \
+          "redirect_uri=#{CGI.escape('http://test.host/hubrise_oauth/login_callback?app_instance_id=' + hr_app_instance.hr_id)}&" \
+          "scope=profile_with_email&" \
           "client_id=dummy_id"
       )
     end

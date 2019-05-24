@@ -12,12 +12,12 @@ RSpec.describe "services/override" do
   end
 
   it "overrides HandleEvent customer handler" do
-    expect(HubriseApp::Services::Override::HandleEvent::SomeOverride).to receive(:customer).with(:arg1, { "resource_type" => "customer" })
-    HubriseApp::Services::HandleEvent.run(:arg1, { "resource_type" => "customer" })
+    expect(HubriseApp::Services::Override::HandleEvent::SomeOverride).to receive(:customer).with(:arg1, "resource_type" => "customer")
+    HubriseApp::Services::HandleEvent.run(:arg1, "resource_type" => "customer")
   end
 
   it "overrides HandleEvent order handler" do
-    expect(HubriseApp::Services::Override::HandleEvent::SomeOverride).to receive(:order).with(:arg1, { "resource_type" => "order" })
-    HubriseApp::Services::HandleEvent.run(:arg1, { "resource_type" => "order" })
+    expect(HubriseApp::Services::Override::HandleEvent::SomeOverride).to receive(:order).with(:arg1, "resource_type" => "order")
+    HubriseApp::Services::HandleEvent.run(:arg1, "resource_type" => "order")
   end
 end

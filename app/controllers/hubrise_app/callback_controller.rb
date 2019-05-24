@@ -2,7 +2,7 @@ module HubriseApp
   class CallbackController < ActionController::Base
     skip_before_action :verify_authenticity_token
     before_action :ensure_hr_app_instance_found!
-  
+
     def event
       Services::HandleEvent.run(current_hr_app_instance, params.permit!.to_h)
       head 200

@@ -27,7 +27,7 @@ module HubriseApp
         current_hr_user.assign_hr_app_instance(current_hr_app_instance)
         redirect_to(main_app.hubrise_open_path)
       else
-        render(plain: 'Something went wrong. Please try to reinstall the app')
+        render(plain: "Something went wrong. Please try to reinstall the app")
       end
     end
 

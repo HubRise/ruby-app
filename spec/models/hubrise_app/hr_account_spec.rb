@@ -36,7 +36,7 @@ RSpec.describe HubriseApp::HrAccount do
     end
 
     it "creates account using location level connection" do
-      stub_hr_api_request(:get, "v1/locations/x_location_id", access_token: "x_access_token", response_body: { name: "location1", account: { name: "account1", currency: "EUR" }})
+      stub_hr_api_request(:get, "v1/locations/x_location_id", access_token: "x_access_token", response_body: { name: "location1", account: { name: "account1", currency: "EUR" } })
       api_client = HubriseApp::HubriseGateway.build_api_client(access_token: "x_access_token", account_id: "x_account_id", location_id: "x_location_id")
 
       expect do

@@ -4,8 +4,8 @@ class HubriseApp::HrLocation < HubriseApp::ApplicationRecord
   include HubriseApp::HrApiResource
   def self.fetch_hr_attrs(api_client, hr_id)
     {
-      hr_id:       hr_id,
-      hr_api_data: api_client.get_location(hr_id).data.except('id')
+      hr_id: hr_id,
+      hr_api_data: api_client.get_location(hr_id).data.except("id")
     }
   end
 end

@@ -5,7 +5,7 @@ RSpec.describe HubriseApp::HrLocation do
 
   describe ".refresh_or_create_via_api_client" do
     subject do
-      stub_hr_api_request(:get, "v1/locations/x_location_id", access_token: "x_access_token", response_body: { name: "location1", account: { name: "account1", currency: "EUR" }})
+      stub_hr_api_request(:get, "v1/locations/x_location_id", access_token: "x_access_token", response_body: { name: "location1", account: { name: "account1", currency: "EUR" } })
       api_client = HubriseApp::HubriseGateway.build_api_client(access_token: "x_access_token", account_id: "x_account_id")
 
       Timecop.freeze(time) do
