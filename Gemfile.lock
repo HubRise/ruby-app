@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/hubrise/ruby-lib.git
-  revision: b6ea9e5ae90516e477ec82f7a903d28093b251eb
-  tag: v0.0.20
+  revision: d1297e5c366abf9121b80efba03684a465918da7
+  tag: v1.0.0
   specs:
-    hubrise_ruby_lib (0.0.20)
+    hubrise_ruby_lib (1.0.0)
 
 PATH
   remote: .

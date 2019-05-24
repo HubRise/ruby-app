@@ -4,10 +4,9 @@ class HubriseApp::HubriseGateway
 
   class << self
     def build_api_client(params = {})
-      Hubrise::APIClientsFactory.build(
+      Hubrise::APIClients::V1.new(
         HubriseApp::CONFIG[:hubrise_client_id],
         HubriseApp::CONFIG[:hubrise_client_secret],
-        HUBRISE_API_VERSION,
         params.merge(
           oauth_host: HubriseApp::CONFIG[:hubrise_oauth_host],
           oauth_port: HubriseApp::CONFIG[:hubrise_oauth_port],
