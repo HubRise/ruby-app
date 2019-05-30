@@ -9,9 +9,8 @@ Gem::Specification.new do |spec|
     "Antoine Monnier",
     "Nick Save"
   ]
-  spec.homepage    = "https://hubrise.com"
-  spec.summary     = "Rails Engine to easily bootstrap Hubrise Thirdparty Application"
-  spec.description = "Rails Engine to easily bootstrap Hubrise Thirdparty Application"
+  spec.homepage    = "https://github.com/HubRise/rails-app-base"
+  spec.summary     = "Rails engine to bootstrap a HubRise-based application"
   spec.license     = "MIT"
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
