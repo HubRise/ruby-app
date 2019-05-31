@@ -1,6 +1,7 @@
 # Bundler
 .bundle/
 Gemfile.lock
+*.gem
 
 # Logfiles
 log/*.log
