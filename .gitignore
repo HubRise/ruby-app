@@ -1,5 +1,6 @@
 # Bundler
 .bundle/
+Gemfile.lock
 
 # Logfiles
 log/*.log

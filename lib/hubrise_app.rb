@@ -1,5 +1,5 @@
 require "hubrise_app/engine"
+require "hubrise_client"
 
 module HubriseApp
-  # Your code goes here...
 end

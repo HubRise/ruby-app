@@ -4,7 +4,7 @@ class HubriseApp::HubriseGateway
 
   class << self
     def build_api_client(params = {})
-      Hubrise::APIClients::V1.new(
+      HubriseClient::V1.new(
         HubriseApp::CONFIG[:hubrise_client_id],
         HubriseApp::CONFIG[:hubrise_client_secret],
         params.merge(

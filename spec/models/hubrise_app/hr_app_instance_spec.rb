@@ -103,7 +103,7 @@ RSpec.describe HubriseApp::HrAppInstance do
                                                       hr_customer_list_id: "x_customer_list_id")
       api_client = hr_app_instance.api_client
 
-      expect(api_client).to be_an_instance_of(Hubrise::APIClients::V1)
+      expect(api_client).to be_an_instance_of(HubriseClient::V1)
       expect(api_client).to have_attributes(
         access_token: "x_access_token",
         app_instance_id: "x_app_instance_id",
