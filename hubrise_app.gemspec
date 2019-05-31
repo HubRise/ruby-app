@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
     "Antoine Monnier",
     "Nick Save"
   ]
-  spec.homepage    = "https://github.com/HubRise/rails-app-base"
+  spec.homepage    = "https://github.com/HubRise/ruby-app"
   spec.summary     = "Rails engine to bootstrap a HubRise-based application"
   spec.license     = "MIT"
 
