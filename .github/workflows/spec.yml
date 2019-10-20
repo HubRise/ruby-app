@@ -1,0 +1,21 @@
+name: spec
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Run all specs
+
+    container:
+      image: ruby:2.3.8-stretch
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v1
+
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Run tests
+        run: rake spec SPEC_OPTS="--format documentation"
