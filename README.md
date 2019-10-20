@@ -1,3 +1,5 @@
+![](https://github.com/hubrise/ruby-app/workflows/spec/badge.svg)
+
 ## Customization
 To override `oauth_controller` add `controllers/hubrise_app/override/oauth_controller.rb` to the host app
 
