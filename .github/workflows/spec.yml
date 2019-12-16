@@ -18,4 +18,4 @@ jobs:
         run: bundle install --jobs 4 --retry 3
 
       - name: Run tests
-        run: rake spec SPEC_OPTS="--format documentation"
+        run: rake spec
