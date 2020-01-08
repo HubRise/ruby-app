@@ -49,14 +49,14 @@ module HubriseApp
     end
 
     def build_hubrise_oauth_login_url
-      HubriseGateway.build_login_authorization_url(
+      login_hubrise_gateway.build_login_authorization_url(
         hubrise_app.hubrise_oauth_login_callback_url
       )
     end
 
     def build_hubrise_oauth_authorize_url
-      HubriseGateway.build_app_authorization_url(hr_app_instance_id,
-                                                 hubrise_app.hubrise_oauth_authorize_callback_url)
+      main_hubrise_gateway.build_app_authorization_url(hr_app_instance_id,
+                                                       hubrise_app.hubrise_oauth_authorize_callback_url)
     end
 
     def ensure_hr_app_instance_found!
@@ -66,5 +66,13 @@ module HubriseApp
         redirect_to(build_hubrise_oauth_authorize_url)
       end
     end
+
+    def login_hubrise_gateway
+      HubriseApp::HubriseGateway.new(HubriseApp::CONFIG)
+    end
+
+    def main_hubrise_gateway
+      login_hubrise_gateway
+    end 
   end
 end

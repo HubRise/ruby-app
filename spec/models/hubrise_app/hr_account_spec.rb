@@ -7,7 +7,7 @@ RSpec.describe HubriseApp::HrAccount do
     context "account level connection" do
       subject do
         stub_hr_api_request(:get, "v1/accounts/x_account_id", access_token: "x_access_token", response_body: { id: "x_account_id", name: "account1", currency: "EUR" })
-        api_client = HubriseApp::HubriseGateway.build_api_client(access_token: "x_access_token", account_id: "x_account_id")
+        api_client = HubriseApp::HubriseGateway.new(HubriseApp::CONFIG).build_api_client(access_token: "x_access_token", account_id: "x_account_id")
 
         Timecop.freeze(time) do
           described_class.refresh_or_create_via_api_client(api_client, "x_account_id")
@@ -37,7 +37,7 @@ RSpec.describe HubriseApp::HrAccount do
 
     it "creates account using location level connection" do
       stub_hr_api_request(:get, "v1/locations/x_location_id", access_token: "x_access_token", response_body: { name: "location1", account: { name: "account1", currency: "EUR" } })
-      api_client = HubriseApp::HubriseGateway.build_api_client(access_token: "x_access_token", account_id: "x_account_id", location_id: "x_location_id")
+      api_client = HubriseApp::HubriseGateway.new(HubriseApp::CONFIG).build_api_client(access_token: "x_access_token", account_id: "x_account_id", location_id: "x_location_id")
 
       expect do
         Timecop.freeze(time) do

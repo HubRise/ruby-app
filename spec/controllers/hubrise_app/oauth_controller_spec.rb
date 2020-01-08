@@ -6,7 +6,7 @@ RSpec.describe HubriseApp::Override::OauthController, type: :controller do
   let(:hr_user) { create(:hr_user) }
   let!(:api_client) do
     double(app_instance_id: "x_app_instance_id").tap do |api_client|
-      allow(HubriseApp::HubriseGateway).to receive(:build_api_client_from_authorization_code).with("some_code").and_return(api_client)
+      allow_any_instance_of(HubriseApp::HubriseGateway).to receive(:build_api_client_from_authorization_code).with("some_code").and_return(api_client)
     end
   end
 

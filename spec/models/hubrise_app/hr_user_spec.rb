@@ -6,7 +6,7 @@ RSpec.describe HubriseApp::HrUser do
   describe ".refresh_or_create_via_api_client" do
     subject do
       stub_hr_api_request(:get, "v1/user", access_token: "x_access_token", response_body: { first_name: "Nick", last_name: "Save", email: "nick@save.com", id: "x_user_id" })
-      api_client = HubriseApp::HubriseGateway.build_api_client(access_token: "x_access_token")
+      api_client = HubriseApp::HubriseGateway.new(HubriseApp::CONFIG).build_api_client(access_token: "x_access_token")
 
       Timecop.freeze(time) do
         described_class.refresh_or_create_via_api_client(api_client)

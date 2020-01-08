@@ -38,7 +38,7 @@ module HubriseApp
     end
 
     def api_client_from_oauth_code
-      @api_client_from_oauth_code ||= HubriseGateway.build_api_client_from_authorization_code(params[:code])
+      @api_client_from_oauth_code ||= main_hubrise_gateway.build_api_client_from_authorization_code(params[:code])
     end
   end
 end
