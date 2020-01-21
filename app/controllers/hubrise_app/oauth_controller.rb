@@ -9,7 +9,7 @@ module HubriseApp
     end
 
     def connect_callback
-      @hr_app_instance = Services.connect_app_instance.run(api_client_from_oauth_code, self)
+      @hr_app_instance = HubriseApp::Services.connect_app_instance.run(api_client_from_oauth_code, self)
 
       if logged_in?
         current_hr_user.assign_hr_app_instance(@hr_app_instance)
