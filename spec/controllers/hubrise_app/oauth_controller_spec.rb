@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe HubriseApp::Override::OauthController, type: :controller do
+RSpec.describe HubriseApp::OauthController, type: :controller do
   routes { HubriseApp::Engine.routes }
 
   let(:hr_user) { create(:hr_user) }
@@ -30,8 +30,7 @@ RSpec.describe HubriseApp::Override::OauthController, type: :controller do
     let(:hr_app_instance) { create(:hr_app_instance) }
 
     subject do
-      expect(HubriseApp::HrAppInstance).to receive(:refresh_or_create_via_api_client).with(api_client).and_return(hr_app_instance)
-      expect(HubriseApp::Services::ConnectAppInstance).to receive(:run).with(hr_app_instance, hubrise_callback_event_url: "http://test.host/hubrise_callback/event?app_instance_id=" + hr_app_instance.hr_id)
+      expect(HubriseApp::Services::Override::ConnectAppInstance).to receive(:run).with(api_client, controller).and_return(hr_app_instance)
       get :connect_callback, params: { code: "some_code" }
     end
 

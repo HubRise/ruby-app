@@ -9,11 +9,8 @@ module HubriseApp::ApplicationController::AppInstanceMethods
   end
 
   def current_hr_app_instance
-    @hr_app_instance ||= current_hr_user && begin
-      current_hr_user.hr_app_instances.merge(hr_app_instances_scope).
-                                       where(hr_id: hr_app_instance_id).
-                                       includes(:hr_account, :hr_location).
-                                       take
+    if current_hr_user
+      @hr_app_instance ||= HubriseApp::Services.resolve_app_instance.run(current_hr_user.hr_app_instances, hr_app_instance_id, self)
     end
   end
 
@@ -27,9 +24,5 @@ module HubriseApp::ApplicationController::AppInstanceMethods
 
   def default_url_options
     super.merge(app_instance_id: hr_app_instance_id || current_hr_app_instance&.hr_id)
-  end
-
-  def hr_app_instances_scope
-    HubriseApp::HrAppInstance
   end
 end

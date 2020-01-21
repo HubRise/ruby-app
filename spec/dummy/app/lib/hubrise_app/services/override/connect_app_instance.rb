@@ -1,10 +1,5 @@
-module HubriseApp::Services::Override::ConnectAppInstance
-  class SomeOverride
-    def self.run(*_); end
-  end
-
-  def run(*args)
-    super
-    SomeOverride.run(*args)
+class HubriseApp::Services::Override::ConnectAppInstance
+  def self.run(*args)
+    HubriseApp::Services::ConnectAppInstance.run(*args)
   end
 end

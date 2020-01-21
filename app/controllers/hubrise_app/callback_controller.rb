@@ -4,12 +4,12 @@ module HubriseApp
     before_action :ensure_hr_app_instance_found!
 
     def event
-      Services::HandleEvent.run(current_hr_app_instance, params.permit!.to_h)
+      Services.handle_event.run(current_hr_app_instance, params.permit!.to_h)
       head 200
     end
 
     def disconnect
-      Services::DisconnectAppInstance.run(current_hr_app_instance)
+      Services.disconnect_app_instance.run(current_hr_app_instance)
       head 200
     end
 
