@@ -9,4 +9,6 @@ HubriseApp::Engine.routes.draw do
     post :event
     get  :disconnect
   end
+
+  resource :sessions, only: :destroy
 end
