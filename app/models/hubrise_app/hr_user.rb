@@ -7,6 +7,7 @@ module HubriseApp
     has_many :hr_user_app_instances, -> { fresh }, primary_key: :hr_id
     has_many :hr_app_instances, through: :hr_user_app_instances
 
+    store_accessor :hr_api_data, :first_name, :last_name, :email
     include HubriseApp::HrApiResource
     class << self
       def fetch_hr_attrs(api_client)

@@ -1,6 +1,7 @@
 class HubriseApp::HrLocation < HubriseApp::ApplicationRecord
   self.table_name = :hr_locations
 
+  store_accessor :hr_api_data, :name
   include HubriseApp::HrApiResource
   def self.fetch_hr_attrs(api_client, hr_id)
     {

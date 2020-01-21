@@ -2,6 +2,8 @@ class HubriseApp::HrAccount < HubriseApp::ApplicationRecord
   self.table_name = :hr_accounts
 
   include HubriseApp::HrApiResource
+
+  store_accessor :hr_api_data, :name
   class << self
     def fetch_hr_attrs(api_client, hr_id)
       raise if api_client.account_id != hr_id
