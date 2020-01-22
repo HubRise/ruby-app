@@ -19,7 +19,7 @@ RSpec.describe HubriseApp::CallbackController, type: :controller do
 
   describe "GET disconnect" do
     it "delegates to DisconnectInstance service" do
-      expect(HubriseApp::Services::Override::DisconnectAppInstance).to receive(:run).with(hr_app_instance)
+      expect(HubriseApp::Services::Override::DisconnectAppInstance).to receive(:run).with(hr_app_instance, controller)
       get :disconnect, params: { app_instance_id: "hr_id1" }
     end
 
