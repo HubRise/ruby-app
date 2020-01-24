@@ -1,10 +1,6 @@
 module HubriseApp::ApplicationController::HubriseGatewayMethods
   def hubrise_gateway
-    @hubrise_gateway ||= HubriseApp::HubriseGateway.new(build_hubrise_gateway_config)
-  end
-
-  def build_hubrise_gateway_config
-    HubriseApp::CONFIG
+    @hubrise_gateway ||= HubriseApp::HubriseGateway.new(HubriseApp::CONFIG)
   end
 
   def build_hubrise_oauth_login_url
