@@ -1,7 +1,7 @@
 class HubriseApp::HubriseGateway
   HUBRISE_LOGIN_SCOPE = "profile_with_email".freeze
 
-  def initialize(config)
+  def initialize(config = HubriseApp::CONFIG)
     @config = config
   end
 
