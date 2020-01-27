@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe HubriseApp::HrAppInstance do
+RSpec.describe HubriseApp::HrAppInstance::Refresh do
   describe "#refresh_via_api_client" do
     let(:api_client) do
       double(
@@ -25,7 +25,7 @@ RSpec.describe HubriseApp::HrAppInstance do
     end
 
     it "refreshes app instance" do
-      hr_app_instance.refresh_via_api_client(api_client)
+      HubriseApp::HrAppInstance::Refresh.run(hr_app_instance, api_client)
       expect(hr_app_instance.reload).to have_attributes(
         hr_id: "x_app_instance_id",
         hr_account: nil,
@@ -48,8 +48,8 @@ RSpec.describe HubriseApp::HrAppInstance do
       )
 
       expect(HubriseApp::HrAccount).to receive(:refresh_or_create_via_api_client).with(api_client, "x_account_id").and_return(hr_account)
-      hr_app_instance.refresh_via_api_client(api_client)
-      expect(described_class.last).to have_attributes(
+      HubriseApp::HrAppInstance::Refresh.run(hr_app_instance, api_client)
+      expect(HubriseApp::HrAppInstance.last).to have_attributes(
         hr_id: "x_app_instance_id",
         hr_account: hr_account,
         hr_location: nil,
@@ -71,8 +71,8 @@ RSpec.describe HubriseApp::HrAppInstance do
       )
 
       expect(HubriseApp::HrLocation).to receive(:refresh_or_create_via_api_client).with(api_client, "x_location_id").and_return(hr_location)
-      hr_app_instance.refresh_via_api_client(api_client)
-      expect(described_class.last).to have_attributes(
+      HubriseApp::HrAppInstance::Refresh.run(hr_app_instance, api_client)
+      expect(HubriseApp::HrAppInstance.last).to have_attributes(
         hr_id: "x_app_instance_id",
         hr_account: nil,
         hr_location: hr_location,
