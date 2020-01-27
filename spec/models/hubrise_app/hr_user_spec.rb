@@ -55,12 +55,4 @@ RSpec.describe HubriseApp::HrUser do
       end
     end
   end
-
-  it "is open for extension" do
-    hr_user = create(:hr_user)
-    aggregate_failures do
-      expect(hr_user.foo).to eq(:foo)
-      expect(hr_user.foo_app_instances).to be_kind_of(ActiveRecord::Associations::CollectionProxy)
-    end
-  end
 end
