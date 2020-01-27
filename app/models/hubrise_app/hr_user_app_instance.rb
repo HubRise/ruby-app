@@ -7,8 +7,4 @@ class HubriseApp::HrUserAppInstance < HubriseApp::ApplicationRecord
   def self.fresh(time: Time.now)
     where("hr_user_app_instances.refreshed_at > ?", time - REFRESH_THRESHOLD)
   end
-
-  def refresh!(time: Time.now)
-    update!(refreshed_at: time)
-  end
 end

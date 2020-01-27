@@ -14,7 +14,7 @@ RSpec.describe HubriseApp::HrUser do
         Time.new(2002, 1, 1, 12) => hr_app_instances[3],
         Time.new(2002, 1, 2) => hr_app_instances[4]
       }.each do |assignment_date, hr_app_instance|
-        Timecop.freeze(assignment_date) { hr_user.assign_hr_app_instance(hr_app_instance) }
+        HubriseApp::HrUserAppInstance.create!(hr_user_id: hr_user.hr_id, hr_app_instance_id: hr_app_instance.hr_id, refreshed_at: assignment_date)
       end
 
       Timecop.freeze(Time.new(2002, 1, 2, 11)) do

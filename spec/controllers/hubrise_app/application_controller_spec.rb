@@ -57,8 +57,24 @@ RSpec.describe HubriseApp::ApplicationController, type: :controller do
       )
     end
 
+    it "tries to reauthorize if app instance is not fresh" do
+      hr_app_instance = create(:hr_app_instance, hr_id: "x_app_instance_id")
+      HubriseApp::HrUserAppInstance.create!(hr_user_id: hr_user.hr_id, hr_app_instance_id: hr_app_instance.hr_id, refreshed_at: Time.now - 1.year)
+
+      get :index, params: { app_instance_id: "x_app_instance_id" }
+      expect(subject).to redirect_to(
+        "http://dummy.hubrise.host:4003/oauth2/v1/authorize?" \
+          "app_instance_id=x_app_instance_id&" \
+          "redirect_uri=#{CGI.escape('http://test.host/hubrise_oauth/authorize_callback?app_instance_id=x_app_instance_id')}&" \
+          "scope&" \
+          "client_id=dummy_id"
+      )
+    end
+
     it "does not prevent an action if app_instance found" do
-      hr_user.assign_hr_app_instance(create(:hr_app_instance, hr_id: "x_app_instance_id"))
+      hr_app_instance = create(:hr_app_instance, hr_id: "x_app_instance_id")
+      HubriseApp::HrUserAppInstance.create!(hr_user_id: hr_user.hr_id, hr_app_instance_id: hr_app_instance.hr_id, refreshed_at: Time.now)
+
       get :index, params: { app_instance_id: "x_app_instance_id" }
       expect(response.body).to eq("ok")
     end

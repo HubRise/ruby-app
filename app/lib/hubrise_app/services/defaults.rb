@@ -11,6 +11,10 @@ module HubriseApp::Services::Defaults
     HubriseApp::Services::ConnectAppInstance
   end
 
+  def assign_app_instance
+    HubriseApp::Services::AssignAppInstance
+  end
+
   def disconnect_app_instance
     NullService
   end

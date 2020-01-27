@@ -15,5 +15,9 @@ class HubriseApp::Services
     def resolve_app_instance
       HubriseApp::Services::Override::ResolveAppInstance
     end
+
+    def assign_app_instance
+      HubriseApp::Services::Override::AssignAppInstance
+    end
   end
 end
