@@ -3,7 +3,7 @@ module HubriseApp
     before_action :ensure_authenticated!, only: :authorize_callback
 
     def login_callback
-      hr_user = HrUser.refresh_or_create_via_api_client(api_client_from_oauth_code)
+      hr_user = HubriseApp::Refresher::User.run(api_client_from_oauth_code)
       login(hr_user)
       redirect_to(build_hubrise_open_url)
     end

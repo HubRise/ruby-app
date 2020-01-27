@@ -12,7 +12,7 @@ RSpec.describe HubriseApp::OauthController, type: :controller do
 
   describe "GET login_callback" do
     subject do
-      expect(HubriseApp::HrUser).to receive(:refresh_or_create_via_api_client).with(api_client).and_return(hr_user)
+      expect(HubriseApp::Refresher::User).to receive(:run).with(api_client).and_return(hr_user)
       get :login_callback, params: { code: "some_code" }
     end
 
