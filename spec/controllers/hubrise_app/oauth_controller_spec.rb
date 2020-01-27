@@ -55,21 +55,25 @@ RSpec.describe HubriseApp::OauthController, type: :controller do
     end
   end
 
-  describe ".authorize_callback" do
+  describe "GET authorize_callback" do
     subject do
       get :authorize_callback, params: { code: "some_code" }
     end
 
-    it "calls #ensure_authenticated!" do
-      expect(controller).to receive(:ensure_authenticated!)
-      subject
-    end
+    context "with valid app instance" do
+      let!(:hr_app_instance) { create(:hr_app_instance, hr_id: "x_app_instance_id") }
 
-    it "assigns app instance if exists" do
-      session[:user_id] = hr_user.id
-      hr_app_instance = create(:hr_app_instance, hr_id: "x_app_instance_id")
-      subject
-      expect(hr_user.hr_app_instances.all).to eq([hr_app_instance])
+      it "redirects if not logged in" do
+        subject
+        expect(hr_user.hr_app_instances.all).to be_empty
+        expect(response.status).to eq(302)
+      end
+
+      it "assigns app instance if logged in" do
+        session[:user_id] = hr_user.id
+        subject
+        expect(hr_user.hr_app_instances.all).to eq([hr_app_instance])
+      end
     end
 
     it "renders error if app instance not found" do

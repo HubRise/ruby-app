@@ -23,6 +23,11 @@ module HubriseApp::ApplicationController::SessionMethods
   end
 
   def ensure_authenticated!
-    redirect_to(build_hubrise_oauth_login_url) unless logged_in?
+    unless logged_in?
+      redirect_to(build_hubrise_oauth_login_url)
+      return
+    end
+
+    yield if block_given?
   end
 end

@@ -3,15 +3,8 @@ module HubriseApp
     skip_before_action :verify_authenticity_token
     before_action :ensure_hr_app_instance_found!
 
-    def event
-      Services.handle_event.run(current_hr_app_instance, event_params, self)
-      head 200
-    end
-
-    def disconnect
-      Services.disconnect_app_instance.run(current_hr_app_instance, self)
-      head 200
-    end
+    include ActionEvent
+    include ActionDisconnect
 
     protected
 
