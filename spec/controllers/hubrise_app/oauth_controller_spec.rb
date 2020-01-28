@@ -30,7 +30,7 @@ RSpec.describe HubriseApp::OauthController, type: :controller do
     let(:hr_app_instance) { create(:hr_app_instance) }
 
     subject do
-      expect(HubriseApp::Services::Override::ConnectAppInstance).to receive(:run).with(api_client, controller).and_return(hr_app_instance)
+      expect(HubriseApp::Services::ConnectAppInstance).to receive(:run).with(api_client, controller).and_return(hr_app_instance)
       get :connect_callback, params: { code: "some_code" }
     end
 

@@ -10,7 +10,7 @@ module HubriseApp::ApplicationController::AppInstanceMethods
 
   def current_hr_app_instance
     if current_hr_user
-      @hr_app_instance ||= HubriseApp::Services.resolve_app_instance.run(current_hr_user.hr_app_instances, hr_app_instance_id, self)
+      @hr_app_instance ||= HubriseApp::Services::ResolveAppInstance.run(current_hr_user.hr_app_instances, hr_app_instance_id, self)
     end
   end
 

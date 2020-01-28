@@ -5,26 +5,24 @@ RSpec.describe HubriseApp::CallbackController, type: :controller do
   let!(:hr_app_instance) { create(:hr_app_instance, hr_id: "hr_id1") }
 
   describe "POST event" do
-    it "delegates to HandleEvent service" do
-      expect(HubriseApp::Services::Override::HandleEvent).to receive(:run).and_return(nil)
+    it "heads with 200" do
       post :event, params: { key: "val", app_instance_id: "hr_id1" }
+      expect(response).to have_http_status(200)
     end
 
     it "heads with 404 if app instance not found" do
-      expect(HubriseApp::Services::Override::HandleEvent).to_not receive(:run)
       post :event, params: { key: "val", app_instance_id: "hr_id2" }
       expect(response).to have_http_status(404)
     end
   end
 
   describe "GET disconnect" do
-    it "delegates to DisconnectInstance service" do
-      expect(HubriseApp::Services::Override::DisconnectAppInstance).to receive(:run).with(hr_app_instance, controller)
+    it "heads with 200" do
       get :disconnect, params: { app_instance_id: "hr_id1" }
+      expect(response).to have_http_status(200)
     end
 
     it "heads with 404 if app instance not found" do
-      expect(HubriseApp::Services::Override::DisconnectAppInstance).to_not receive(:run)
       get :disconnect, params: { app_instance_id: "hr_id2" }
       expect(response).to have_http_status(404)
     end

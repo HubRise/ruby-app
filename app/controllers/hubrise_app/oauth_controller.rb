@@ -7,7 +7,7 @@ module HubriseApp
     protected
 
     def current_hr_app_instance
-      @hr_app_instance ||= HubriseApp::Services.resolve_app_instance.run(HrAppInstance, api_client_from_oauth_code.app_instance_id, self)
+      @hr_app_instance ||= HubriseApp::Services::ResolveAppInstance.run(HrAppInstance, api_client_from_oauth_code.app_instance_id, self)
     end
 
     def api_client_from_oauth_code

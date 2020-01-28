@@ -9,7 +9,7 @@ module HubriseApp
     protected
 
     def current_hr_app_instance
-      HubriseApp::Services.resolve_app_instance.run(HrAppInstance, params[:app_instance_id], self)
+      HubriseApp::Services::ResolveAppInstance.run(HrAppInstance, params[:app_instance_id], self)
     end
 
     def ensure_hr_app_instance_found!
