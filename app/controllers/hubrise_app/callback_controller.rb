@@ -17,7 +17,7 @@ module HubriseApp
     end
 
     def event_params
-      params.permit!.to_h.except(:controller, :action)
+      params.require(:callback).permit!
     end
   end
 end
