@@ -21,7 +21,7 @@ class HubriseApp::HubriseGateway
 
   def build_api_client_from_app_instance(app_instance)
     build_api_client(
-      access_token: app_instance.hr_access_token,
+      access_token: app_instance.access_token,
       app_instance_id: app_instance.hr_id,
       account_id: app_instance.hr_account_id,
       location_id: app_instance.hr_location_id,

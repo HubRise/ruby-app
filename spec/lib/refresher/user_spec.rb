@@ -13,23 +13,23 @@ RSpec.describe HubriseApp::Refresher::User do
   end
 
   it "creates new user" do
-    expect { subject }.to change(HubriseApp::HrUser, :count).by(1)
+    expect { subject }.to change(User, :count).by(1)
     expect(subject).to have_attributes(
       hr_id: "x_user_id",
-      hr_api_data: { "first_name" => "Nick", "last_name" => "Save", "email" => "nick@save.com" },
-      hr_access_token: "x_access_token",
+      api_data: { "first_name" => "Nick", "last_name" => "Save", "email" => "nick@save.com" },
+      access_token: "x_access_token",
       refreshed_at: time
     )
   end
 
   it "refreshes existing user" do
-    hr_user = create(:hr_user, hr_id: "x_user_id")
+    user = create(:user, hr_id: "x_user_id")
 
-    expect { subject }.to_not change(HubriseApp::HrUser, :count)
-    expect(hr_user.reload).to have_attributes(
+    expect { subject }.to_not change(User, :count)
+    expect(user.reload).to have_attributes(
       hr_id: "x_user_id",
-      hr_api_data: { "first_name" => "Nick", "last_name" => "Save", "email" => "nick@save.com" },
-      hr_access_token: "x_access_token",
+      api_data: { "first_name" => "Nick", "last_name" => "Save", "email" => "nick@save.com" },
+      access_token: "x_access_token",
       refreshed_at: time
     )
   end

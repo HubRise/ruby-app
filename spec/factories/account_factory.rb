@@ -1,7 +1,7 @@
 FactoryBot.define do
-  factory :hr_account, class: HubriseApp::HrAccount do
+  factory :account, class: Account do
     hr_id { generate_ref }
-    hr_api_data { {} }
+    api_data { {} }
     refreshed_at { Time.now }
   end
 end
