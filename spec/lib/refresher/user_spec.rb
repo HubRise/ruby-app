@@ -4,7 +4,7 @@ RSpec.describe HubriseApp::Refresher::User do
   let(:time) { Time.new(2000) }
 
   subject do
-    stub_hr_api_request(:get, "v1/user", access_token: "x_access_token", response_body: { first_name: "Nick", last_name: "Save", email: "nick@save.com", id: "x_user_id" })
+    stub_hr_api_request(:get, "v1/user", access_token: "x_access_token", response_body: { first_name: "Nick", last_name: "Save", email: "nick@save.com", id: "x_user_id", locales: ["en-GB"] })
     api_client = HubriseApp::HubriseGateway.new(HubriseApp::CONFIG).build_api_client(access_token: "x_access_token")
 
     Timecop.freeze(time) do
@@ -16,7 +16,10 @@ RSpec.describe HubriseApp::Refresher::User do
     expect { subject }.to change(User, :count).by(1)
     expect(subject).to have_attributes(
       hr_id: "x_user_id",
-      api_data: { "first_name" => "Nick", "last_name" => "Save", "email" => "nick@save.com" },
+      first_name: "Nick",
+      last_name: "Save",
+      email: "nick@save.com",
+      locales: ["en-GB"],
       access_token: "x_access_token",
       refreshed_at: time
     )
@@ -28,7 +31,10 @@ RSpec.describe HubriseApp::Refresher::User do
     expect { subject }.to_not change(User, :count)
     expect(user.reload).to have_attributes(
       hr_id: "x_user_id",
-      api_data: { "first_name" => "Nick", "last_name" => "Save", "email" => "nick@save.com" },
+      first_name: "Nick",
+      last_name: "Save",
+      email: "nick@save.com",
+      locales: ["en-GB"],
       access_token: "x_access_token",
       refreshed_at: time
     )

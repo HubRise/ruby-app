@@ -17,7 +17,7 @@ RSpec.describe HubriseApp::Refresher::Location do
     subject
     expect(location).to have_attributes(
       hr_id: "x_location_id",
-      api_data: { "name" => "location1", "account" => { "name" => "account1", "currency" => "EUR" } },
+      name: "location1",
       refreshed_at: time
     )
   end

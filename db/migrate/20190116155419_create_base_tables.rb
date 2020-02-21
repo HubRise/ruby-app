@@ -1,20 +1,20 @@
 class CreateBaseTables < ActiveRecord::Migration[5.2]
   def change
     create_table :accounts do |t|
-      t.string   :hr_id,        null: false, index: { unique: true }
-      t.json     :api_data,     null: false
+      t.string :hr_id, null: false, index: { unique: true }
+      t.string :name, null: false
       t.datetime :refreshed_at, null: false
     end
 
     create_table :locations do |t|
-      t.string   :hr_id,        null: false, index: { unique: true }
-      t.json     :api_data,     null: false
+      t.string :hr_id, null: false, index: { unique: true }
+      t.string :name, null: false
       t.datetime :refreshed_at, null: false
     end
 
     create_table :app_instances do |t|
       t.string :hr_id, null: false, index: { unique: true }
-      t.string :hr_account_id,  index: true
+      t.string :hr_account_id, index: true
       t.string :hr_location_id, index: true
       t.string :hr_catalog_id
       t.string :hr_customer_list_id
@@ -25,16 +25,19 @@ class CreateBaseTables < ActiveRecord::Migration[5.2]
     add_foreign_key :app_instances, :locations, primary_key: :hr_id, column: :hr_location_id
 
     create_table :users do |t|
-      t.string   :hr_id,         null: false, index: { unique: true }
-      t.json     :api_data,      null: false
-      t.string   :access_token,  null: false
-      t.datetime :refreshed_at,  null: false
+      t.string :hr_id, null: false, index: { unique: true }
+      t.string :access_token, null: false
+      t.string :email
+      t.string :first_name
+      t.string :last_name
+      t.string :locales, array: true
+      t.datetime :refreshed_at, null: false
     end
 
     create_table :user_app_instances do |t|
-      t.string    :hr_user_id,         index: true
-      t.string    :hr_app_instance_id, index: true
-      t.datetime  :refreshed_at, null: false
+      t.string :hr_user_id, index: true
+      t.string :hr_app_instance_id, index: true
+      t.datetime :refreshed_at, null: false
     end
 
     add_foreign_key :user_app_instances, :users, primary_key: :hr_id, column: :hr_user_id

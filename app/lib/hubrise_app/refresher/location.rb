@@ -7,7 +7,7 @@ class HubriseApp::Refresher::Location
 
       location.update!(
         refreshed_at: Time.now,
-        api_data: api_client.get_location(location.hr_id).data.except("id")
+        name: api_client.get_location(location.hr_id).data["name"]
       )
     end
 

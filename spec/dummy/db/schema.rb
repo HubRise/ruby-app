@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_155419) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "hr_id", null: false
-    t.json "api_data", null: false
+    t.string "name", null: false
     t.datetime "refreshed_at", null: false
     t.index ["hr_id"], name: "index_accounts_on_hr_id", unique: true
   end
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_155419) do
 
   create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "hr_id", null: false
-    t.json "api_data", null: false
+    t.string "name", null: false
     t.datetime "refreshed_at", null: false
     t.index ["hr_id"], name: "index_locations_on_hr_id", unique: true
   end
@@ -49,8 +49,11 @@ ActiveRecord::Schema.define(version: 2019_01_16_155419) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "hr_id", null: false
-    t.json "api_data", null: false
     t.string "access_token", null: false
+    t.string "email"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "locales"
     t.datetime "refreshed_at", null: false
     t.index ["hr_id"], name: "index_users_on_hr_id", unique: true
   end
