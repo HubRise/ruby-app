@@ -3,6 +3,7 @@ class CreateBaseTables < ActiveRecord::Migration[5.2]
     create_table :accounts do |t|
       t.string :hr_id, null: false, index: { unique: true }
       t.string :name, null: false
+      t.string :currency, null: false
       t.datetime :refreshed_at, null: false
     end
 

@@ -14,7 +14,8 @@ class HubriseApp::Refresher::Account
 
       account.update!(
         refreshed_at: Time.now,
-        name: api_data["name"]
+        name: api_data["name"],
+        currency: api_data["currency"]
       )
     end
 

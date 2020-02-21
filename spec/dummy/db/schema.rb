@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_155419) do
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "hr_id", null: false
     t.string "name", null: false
+    t.string "currency", null: false
     t.datetime "refreshed_at", null: false
     t.index ["hr_id"], name: "index_accounts_on_hr_id", unique: true
   end

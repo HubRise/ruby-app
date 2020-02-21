@@ -20,6 +20,7 @@ RSpec.describe HubriseApp::Refresher::Account do
       expect(account).to have_attributes(
         hr_id: "x_account_id",
         name: "account1",
+        currency: "EUR",
         refreshed_at: time
       )
     end
