@@ -17,7 +17,7 @@ module HubriseApp
     end
 
     def event_params
-      params.require(:callback).permit!
+      params.require(:callback).permit!.to_h
     end
   end
 end
