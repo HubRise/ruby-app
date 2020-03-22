@@ -7,4 +7,8 @@ class User < HubriseApp::ApplicationRecord
   def primary_locale
     locales.first
   end
+
+  def full_name
+    [first_name, last_name].join(" ")
+  end
 end
