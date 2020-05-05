@@ -4,6 +4,7 @@ default: &default
   password:   mysql
   host:       127.0.0.1
   reconnect:  true
+  encoding:   utf8mb4
 
 development:
   <<: *default
