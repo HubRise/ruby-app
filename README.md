@@ -3,7 +3,7 @@
 
 ## Installation
 
-Refer to https://github.com/HubRise/ruby-app/blob/v1/spec/dummy/ for examples
+Refer to https://github.com/HubRise/ruby-app/tree/master/spec/dummy/ for examples
 
 1. Install the gem (`gem "hubrise_app", git: "https://github.com/HubRise/ruby-app.git"` for now)
 2. Add `hubrise_app/config.yaml`
@@ -48,7 +48,7 @@ Note: this workflow is not responsible for creating a `User` record, it **only**
 - If there's no user logged in - the `Login Workflow` is triggered right away by redirecting to login oauth url.
 
 
-Code: https://github.com/HubRise/ruby-app/blob/v1/app/controllers/hubrise_app/oauth_controller/action_connect_callback.rb
+Code: https://github.com/HubRise/ruby-app/tree/master/app/controllers/hubrise_app/oauth_controller/action_connect_callback.rb
 
 ### Login Workflow
 Usualy this workflow gets triggered after `Connect Workflow` or by the `ensure_authenticated!` filter for any anon access.
@@ -62,7 +62,7 @@ If `app_instance_id` is not specified - its considered to be a broken request an
 
 Note: when a user opens already installed app by clicking the button from Hubrise Manager - it opens the `open_url` (specified by developer during app creation) with a `app_instance_id` param.
 
-This `app_instance_id` param is carried on from request to request using `default_url_options`: https://github.com/HubRise/ruby-app/blob/v1/app/controllers/hubrise_app/application_controller/app_instance_methods.rb#L26
+This `app_instance_id` param is carried on from request to request using `default_url_options`: https://github.com/HubRise/ruby-app/tree/master/app/controllers/hubrise_app/application_controller/app_instance_methods.rb#L26
 
 
 A use case:
