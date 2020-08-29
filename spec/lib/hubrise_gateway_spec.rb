@@ -5,12 +5,12 @@ RSpec.describe HubriseApp::HubriseGateway do
 
   describe "#build_api_client_from_app_instance" do
     it "builds api client" do
-      hr_app_instance = HubriseApp::HrAppInstance.new(hr_id: "x_app_instance_id",
-                                                      hr_access_token: "x_access_token",
-                                                      hr_account_id: "x_account_id",
-                                                      hr_location_id: "x_account_id",
-                                                      hr_catalog_id: "x_catalog_id",
-                                                      hr_customer_list_id: "x_customer_list_id")
+      hr_app_instance = AppInstance.new(hr_id: "x_app_instance_id",
+                                        access_token: "x_access_token",
+                                        hr_account_id: "x_account_id",
+                                        hr_location_id: "x_account_id",
+                                        hr_catalog_id: "x_catalog_id",
+                                        hr_customer_list_id: "x_customer_list_id")
       api_client = hubrise_gateway.build_api_client_from_app_instance(hr_app_instance)
 
       expect(api_client).to be_an_instance_of(HubriseClient::V1)

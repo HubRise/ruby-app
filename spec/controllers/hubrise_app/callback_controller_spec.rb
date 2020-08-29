@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe HubriseApp::CallbackController, type: :controller do
   routes { HubriseApp::Engine.routes }
-  let!(:hr_app_instance) { create(:hr_app_instance, hr_id: "hr_id1") }
+  let!(:app_instance) { create(:app_instance, hr_id: "hr_id1") }
 
   describe "POST event" do
     it "heads with 200" do

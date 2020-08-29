@@ -2,24 +2,24 @@ module HubriseApp::ApplicationController::SessionMethods
   extend ActiveSupport::Concern
   included do
     protect_from_forgery with: :reset_session
-    helper_method :current_hr_user, :logged_in?
+    helper_method :current_user, :logged_in?
   end
 
-  def login(hr_user)
-    session[:user_id] = hr_user.id
-    @current_hr_user  = hr_user
+  def login(user)
+    session[:user_id] = user.id
+    @current_user  = user
   end
 
   def logout
     session[:user_id] = nil
   end
 
-  def current_hr_user
-    @current_hr_user ||= HubriseApp::HrUser.where(id: session[:user_id]).take
+  def current_user
+    @current_user ||= User.where(id: session[:user_id]).take
   end
 
   def logged_in?
-    !!current_hr_user
+    !!current_user
   end
 
   def ensure_authenticated!

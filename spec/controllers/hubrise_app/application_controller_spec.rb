@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe HubriseApp::ApplicationController, type: :controller do
-  let(:hr_user) { create(:hr_user) }
+  let(:user) { create(:user) }
 
   describe ".ensure_authenticated!" do
     subject { get :index }
@@ -24,22 +24,22 @@ RSpec.describe HubriseApp::ApplicationController, type: :controller do
     end
 
     it "does not prevent an action if logged in" do
-      session[:user_id] = hr_user.id
+      session[:user_id] = user.id
       subject
       expect(response.body).to eq("ok")
     end
   end
 
-  describe ".ensure_hr_app_instance_found!" do
+  describe ".ensure_app_instance_found!" do
     controller do
-      before_action :ensure_hr_app_instance_found!
+      before_action :ensure_app_instance_found!
 
       def index
         render plain: :ok
       end
     end
 
-    before { session[:user_id] = hr_user.id }
+    before { session[:user_id] = user.id }
 
     it "renders error if app_instance_id not provided" do
       get :index
@@ -58,8 +58,8 @@ RSpec.describe HubriseApp::ApplicationController, type: :controller do
     end
 
     it "tries to reauthorize if app instance is not fresh" do
-      hr_app_instance = create(:hr_app_instance, hr_id: "x_app_instance_id")
-      HubriseApp::HrUserAppInstance.create!(hr_user_id: hr_user.hr_id, hr_app_instance_id: hr_app_instance.hr_id, refreshed_at: Time.now - 1.year)
+      app_instance = create(:app_instance, hr_id: "x_app_instance_id")
+      UserAppInstance.create!(hr_user_id: user.hr_id, hr_app_instance_id: app_instance.hr_id, refreshed_at: Time.now - 1.year)
 
       get :index, params: { app_instance_id: "x_app_instance_id" }
       expect(subject).to redirect_to(
@@ -72,8 +72,8 @@ RSpec.describe HubriseApp::ApplicationController, type: :controller do
     end
 
     it "does not prevent an action if app_instance found" do
-      hr_app_instance = create(:hr_app_instance, hr_id: "x_app_instance_id")
-      HubriseApp::HrUserAppInstance.create!(hr_user_id: hr_user.hr_id, hr_app_instance_id: hr_app_instance.hr_id, refreshed_at: Time.now)
+      app_instance = create(:app_instance, hr_id: "x_app_instance_id")
+      UserAppInstance.create!(hr_user_id: user.hr_id, hr_app_instance_id: app_instance.hr_id, refreshed_at: Time.now)
 
       get :index, params: { app_instance_id: "x_app_instance_id" }
       expect(response.body).to eq("ok")

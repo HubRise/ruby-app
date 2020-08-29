@@ -2,17 +2,17 @@ class HubriseApp::Refresher::Location
   REFRESH_THRESHOLD = 1.day
 
   class << self
-    def run(hr_location, api_client)
-      return unless stale?(hr_location)
+    def run(location, api_client)
+      return unless stale?(location)
 
-      hr_location.update!(
+      location.update!(
         refreshed_at: Time.now,
-        hr_api_data: api_client.get_location(hr_location.hr_id).data.except("id")
+        name: api_client.get_location(location.hr_id).data["name"]
       )
     end
 
-    def stale?(hr_location)
-      hr_location.refreshed_at.nil? || Time.now - hr_location.refreshed_at > REFRESH_THRESHOLD
+    def stale?(location)
+      location.refreshed_at.nil? || Time.now - location.refreshed_at > REFRESH_THRESHOLD
     end
   end
 end
