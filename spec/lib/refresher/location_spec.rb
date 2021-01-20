@@ -15,7 +15,7 @@ RSpec.describe HubriseApp::Refresher::Location do
       :get,
       "v1/locations/x_location_id",
       access_token: "x_access_token",
-      response_body: { name: "location1", timezone: "Europe/London", account: { name: "account1", currency: "EUR" } }
+      response_body: { name: "location1", timezone: { name: "Europe/London" }, account: { name: "account1", currency: "EUR" } }
     )
 
     Timecop.freeze(time) do
