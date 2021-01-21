@@ -19,6 +19,7 @@ RSpec.describe HubriseApp::Refresher::Account do
 
       expect(account).to have_attributes(
         hr_id: "x_account_id",
+        api_data: { "name" => "account1", "currency" => "EUR" },
         name: "account1",
         currency: "EUR",
         refreshed_at: time
@@ -38,9 +39,9 @@ RSpec.describe HubriseApp::Refresher::Account do
 
     it "refreshes an account" do
       subject
-
       expect(account).to have_attributes(
         hr_id: "x_account_id",
+        api_data: { "currency" => "EUR", "name" => "account1" },
         name: "account1",
         refreshed_at: time
       )
