@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :location, class: Location do
     hr_id { generate_ref }
-    name { "Some Location name" }
+    api_data { { "name" => "Some Location name", "timezone" => { "name" => "Europe/London" } } }
     refreshed_at { Time.now }
-    timezone { "Europe/London" }
   end
 end
