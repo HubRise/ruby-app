@@ -29,6 +29,7 @@ RSpec.describe HubriseApp::Refresher::Location do
       hr_id: location_id,
       api_data: a_hash_including("name" => "Some Location"),
       name: "Some Location",
+      country: "GB",
       timezone: "Europe/London",
       refreshed_at: time
     )
