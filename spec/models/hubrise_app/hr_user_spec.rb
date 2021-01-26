@@ -1,8 +1,6 @@
 require "rails_helper"
 
 RSpec.describe User do
-  let(:time) { Time.new(2000) }
-
   describe "#app_instances" do
     it "returns only fresh instances" do
       user = create(:user)
@@ -17,7 +15,7 @@ RSpec.describe User do
         UserAppInstance.create!(hr_user_id: user.hr_id, hr_app_instance_id: app_instance.hr_id, refreshed_at: assignment_date)
       end
 
-      Timecop.freeze(Time.new(2002, 1, 2, 11)) do
+      travel_to(Time.new(2002, 1, 2, 11)) do
         expect(user.app_instances.to_a).to eq(app_instances[3..4])
       end
     end

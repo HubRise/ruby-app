@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe HubriseApp::Refresher::Location do
-  let(:time) { Time.new(2000) }
+  let(:now) { Date.new(2000) }
 
   let(:location_id) { ApiFixtures.location_json["id"] }
   let(:location) { Location.new(hr_id: location_id) }
@@ -17,8 +17,7 @@ RSpec.describe HubriseApp::Refresher::Location do
                         "v1/locations/#{location_id}",
                         access_token: "x_access_token",
                         response_body: ApiFixtures.location_json)
-
-    Timecop.freeze(time) do
+    travel_to(now) do
       HubriseApp::Refresher::Location.run(location, api_client)
     end
   end
@@ -31,7 +30,7 @@ RSpec.describe HubriseApp::Refresher::Location do
       name: "Some Location",
       country: "GB",
       timezone: "Europe/London",
-      refreshed_at: time
+      refreshed_at: now
     )
   end
 end

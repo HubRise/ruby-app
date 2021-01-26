@@ -9,7 +9,6 @@ group :test do
   gem "mysql2", ">= 0.4.4", "< 0.6.0"
   gem "pry-rails"
   gem "rspec-rails"
-  gem "timecop"
   gem "webmock"
 end
 

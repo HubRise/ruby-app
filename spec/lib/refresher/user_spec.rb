@@ -7,7 +7,7 @@ RSpec.describe HubriseApp::Refresher::User do
     stub_hr_api_request(:get, "v1/user", access_token: "x_access_token", response_body: { first_name: "Nick", last_name: "Save", email: "nick@save.com", id: "x_user_id", locales: ["en-GB"] })
     api_client = HubriseApp::HubriseGateway.new(HubriseApp::CONFIG).build_api_client(access_token: "x_access_token")
 
-    Timecop.freeze(time) do
+    travel_to(time) do
       HubriseApp::Refresher::User.run(api_client)
     end
   end

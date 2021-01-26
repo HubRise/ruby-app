@@ -1,3 +1,5 @@
+require_relative "./../support/api_fixtures"
+
 FactoryBot.define do
   factory :location, class: Location do
     hr_id { generate_ref }

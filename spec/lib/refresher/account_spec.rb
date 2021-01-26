@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe HubriseApp::Refresher::Account do
-  let(:time) { Time.new(2000) }
+  let(:now) { Date.new(2000) }
 
   let(:account_id) { ApiFixtures.account_json["id"] }
   let(:account) { Account.new(hr_id: account_id) }
@@ -20,7 +20,7 @@ RSpec.describe HubriseApp::Refresher::Account do
                           access_token: "x_access_token",
                           response_body: ApiFixtures.account_json)
 
-      Timecop.freeze(time) do
+      travel_to(now) do
         HubriseApp::Refresher::Account.run(account, api_client)
       end
     end
@@ -33,7 +33,7 @@ RSpec.describe HubriseApp::Refresher::Account do
         api_data: a_hash_including("name" => "Some Account", "currency" => "GBP"),
         name: "Some Account",
         currency: "GBP",
-        refreshed_at: time
+        refreshed_at: now
       )
     end
   end
@@ -56,7 +56,7 @@ RSpec.describe HubriseApp::Refresher::Account do
                           access_token: "x_access_token",
                           response_body: ApiFixtures.location_json)
 
-      Timecop.freeze(time) do
+      travel_to(now) do
         HubriseApp::Refresher::Account.run(account, api_client)
       end
     end
@@ -67,7 +67,7 @@ RSpec.describe HubriseApp::Refresher::Account do
         hr_id: account_id,
         api_data: a_hash_including("currency" => "GBP", "name" => "Some Account"),
         name: "Some Account",
-        refreshed_at: time
+        refreshed_at: now
       )
     end
   end
