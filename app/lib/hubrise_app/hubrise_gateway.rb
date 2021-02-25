@@ -43,4 +43,16 @@ class HubriseApp::HubriseGateway
   def build_app_authorization_url(hr_app_instance_id, redirect_uri)
     build_api_client.build_authorization_url(redirect_uri, nil, app_instance_id: hr_app_instance_id)
   end
+
+  def valid_hmac?(body, request_hmac)
+    calculated_hmac = OpenSSL::HMAC.hexdigest(
+                        OpenSSL::Digest.new("sha256"),
+                        @config[:hubrise_client_secret],
+                        body
+                      )
+    ActiveSupport::SecurityUtils.secure_compare(
+      calculated_hmac,
+      request_hmac || ""
+    )
+  end
 end

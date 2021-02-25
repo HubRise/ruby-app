@@ -5,13 +5,24 @@ RSpec.describe HubriseApp::CallbackController, type: :controller do
   let!(:app_instance) { create(:app_instance, hr_id: "hr_id1") }
 
   describe "POST event" do
-    it "heads with 200" do
-      post :event, params: { key: "val", app_instance_id: "hr_id1" }
-      expect(response).to have_http_status(200)
+    describe "with valid hmac" do
+      it "heads with 200" do
+        request.headers["X-Hubrise-Hmac-Sha256"] = "edb1136a4bd15e6637f2720b9804f21a4913ce41e5ba31b8ad62bad00fa53ce5"
+        post :event, params: { key: "val", app_instance_id: "hr_id1" }, as: :json
+
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    it "heads with 401 for invalid hmac" do
+      request.headers["X-Hubrise-Hmac-Sha256"] = "wrong"
+      post :event, params: { key: "val", app_instance_id: "hr_id1" }, as: :json
+
+      expect(response).to have_http_status(401)
     end
 
     it "heads with 404 if app instance not found" do
-      post :event, params: { key: "val", app_instance_id: "hr_id2" }
+      post :event, params: { key: "val", app_instance_id: "hr_id2" }, as: :json
       expect(response).to have_http_status(404)
     end
   end
