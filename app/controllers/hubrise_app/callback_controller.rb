@@ -24,7 +24,7 @@ module HubriseApp
     def verify_event!
       unless hubrise_gateway.valid_hmac?(request.raw_post,
                                          request.headers["X-Hubrise-Hmac-Sha256"])
-        head(401)
+        render(plain: "Invalid HubRise HMAC", status: 401)
       end
     end
   end
