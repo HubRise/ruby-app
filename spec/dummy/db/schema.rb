@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_21_150253) do
+ActiveRecord::Schema.define(version: 2021_04_19_120038) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "hr_id", null: false
@@ -27,8 +27,24 @@ ActiveRecord::Schema.define(version: 2021_01_21_150253) do
     t.string "hr_customer_list_id"
     t.string "access_token", null: false
     t.index ["hr_account_id"], name: "index_app_instances_on_hr_account_id"
+    t.index ["hr_catalog_id"], name: "fk_rails_2906ebe9cf"
+    t.index ["hr_customer_list_id"], name: "fk_rails_9a385959c1"
     t.index ["hr_id"], name: "index_app_instances_on_hr_id", unique: true
     t.index ["hr_location_id"], name: "index_app_instances_on_hr_location_id"
+  end
+
+  create_table "catalogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "hr_id", null: false
+    t.json "api_data"
+    t.datetime "refreshed_at", null: false
+    t.index ["hr_id"], name: "index_catalogs_on_hr_id", unique: true
+  end
+
+  create_table "customer_lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "hr_id", null: false
+    t.json "api_data"
+    t.datetime "refreshed_at", null: false
+    t.index ["hr_id"], name: "index_customer_lists_on_hr_id", unique: true
   end
 
   create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -59,6 +75,8 @@ ActiveRecord::Schema.define(version: 2021_01_21_150253) do
   end
 
   add_foreign_key "app_instances", "accounts", column: "hr_account_id", primary_key: "hr_id"
+  add_foreign_key "app_instances", "catalogs", column: "hr_catalog_id", primary_key: "hr_id"
+  add_foreign_key "app_instances", "customer_lists", column: "hr_customer_list_id", primary_key: "hr_id"
   add_foreign_key "app_instances", "locations", column: "hr_location_id", primary_key: "hr_id"
   add_foreign_key "user_app_instances", "app_instances", column: "hr_app_instance_id", primary_key: "hr_id"
   add_foreign_key "user_app_instances", "users", column: "hr_user_id", primary_key: "hr_id"
