@@ -1,42 +1,51 @@
 require "rails_helper"
 
 RSpec.describe HubriseApp::Refresher::User do
-  let(:time) { Time.new(2000) }
+  let!(:today) { Date.new(2020).tap(&method(:travel_to)) }
+  let(:api_client) do
+    double(
+      access_token: "access_tokenX",
+      user_id: "user_idX"
+    )
+  end
 
-  subject do
-    stub_hr_api_request(:get, "v1/user", access_token: "x_access_token", response_body: { first_name: "Nick", last_name: "Save", email: "nick@save.com", id: "x_user_id", locales: ["en-GB"] })
-    api_client = HubriseApp::HubriseGateway.new(HubriseApp::CONFIG).build_api_client(access_token: "x_access_token")
-
-    travel_to(time) do
-      HubriseApp::Refresher::User.run(api_client)
-    end
+  before do
+    expect(api_client).to receive(:get_user).and_return(double(data: ApiFixtures.user_json))
   end
 
   it "creates new user" do
-    expect { subject }.to change(User, :count).by(1)
-    expect(subject).to have_attributes(
-      hr_id: "x_user_id",
+    user = build(:user, hr_id: "user_idX", refreshed_at: today - 10.days)
+
+    expect do
+      HubriseApp::Refresher::User.run(user, api_client)
+    end.to change(User, :count).by(1)
+
+    expect(user).to have_attributes(
+      hr_id: "user_idX",
       first_name: "Nick",
       last_name: "Save",
       email: "nick@save.com",
       locales: ["en-GB"],
-      access_token: "x_access_token",
-      refreshed_at: time
+      access_token: "access_tokenX",
+      refreshed_at: today
     )
   end
 
   it "refreshes existing user" do
-    user = create(:user, hr_id: "x_user_id")
+    user = create(:user, hr_id: "user_idX", refreshed_at: today - 10.days)
 
-    expect { subject }.to_not change(User, :count)
+    expect do
+      HubriseApp::Refresher::User.run(user, api_client)
+    end.to_not change(User, :count)
+
     expect(user.reload).to have_attributes(
-      hr_id: "x_user_id",
+      hr_id: "user_idX",
       first_name: "Nick",
       last_name: "Save",
       email: "nick@save.com",
       locales: ["en-GB"],
-      access_token: "x_access_token",
-      refreshed_at: time
+      access_token: "access_tokenX",
+      refreshed_at: today
     )
   end
 end
