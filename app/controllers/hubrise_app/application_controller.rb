@@ -27,7 +27,7 @@ module HubriseApp
     end
 
     def ensure_authenticated!
-      redirect_to(build_hubrise_oauth_login_url) unless logged_in?
+      redirect_to(build_hubrise_oauth_login_url, allow_other_host: true) unless logged_in?
     end
 
     ##############
@@ -63,7 +63,7 @@ module HubriseApp
       if hr_app_instance_id.blank?
         render(plain: "Something went wrong. Please try to reopen from Hubrise Dashboard.")
       elsif current_hr_app_instance.nil?
-        redirect_to(build_hubrise_oauth_authorize_url)
+        redirect_to(build_hubrise_oauth_authorize_url, allow_other_host: true)
       end
     end
   end

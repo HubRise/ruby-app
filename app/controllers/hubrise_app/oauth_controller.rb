@@ -17,7 +17,7 @@ module HubriseApp
         current_hr_user.assign_hr_app_instance(current_hr_app_instance)
         redirect_to(main_app.hubrise_open_path)
       else
-        redirect_to(build_hubrise_oauth_login_url)
+        redirect_to(build_hubrise_oauth_login_url, allow_other_host: true)
       end
     end
 
