@@ -6,7 +6,7 @@ module HubriseApp::OauthController::ActionConnectCallback
       HubriseApp::Services::AssignAppInstance.run(current_user, @app_instance, self)
       redirect_to(build_hubrise_open_url)
     else
-      redirect_to(build_hubrise_oauth_login_url)
+      redirect_to(build_hubrise_oauth_login_url, allow_other_host: true)
     end
   end
 end
