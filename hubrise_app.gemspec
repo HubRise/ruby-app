@@ -15,6 +15,6 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "hubrise_client", "~> 2.0.2"
+  spec.add_dependency "hubrise_client", "~> 2.0.6"
   spec.add_dependency "rails", "> 5.2.2"
 end
