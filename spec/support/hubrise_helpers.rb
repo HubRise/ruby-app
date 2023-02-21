@@ -12,4 +12,18 @@ module HubriseHelpers
         headers: access_token ? { "X-Access-Token" => access_token } : {}
       ).to_return(body: response_body.to_json)
   end
+
+  def post_callback_event(event_params, client_secret)
+    event_hmac = OpenSSL::HMAC.hexdigest(
+      OpenSSL::Digest.new("sha256"),
+      client_secret,
+      event_params.to_json
+    )
+    post(
+      "/hubrise_callback/event",
+      params: event_params,
+      headers: { "X-Hubrise-Hmac-Sha256" => event_hmac },
+      as: :json
+    )
+  end
 end
