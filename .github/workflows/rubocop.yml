@@ -1,11 +1,11 @@
-name: spec
+name: rubocop
 
 on: push
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Run all specs
+    name: Rubocop
 
     steps:
       - name: Clone repository
@@ -17,5 +17,5 @@ jobs:
           ruby-version: 2.7.7
           bundler-cache: true
 
-      - name: Run tests
-        run: bundle exec rspec
+      - name: Rubocop
+        run: bundle exec rubocop

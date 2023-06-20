@@ -4,6 +4,7 @@ AllCops:
     - "spec/dummy/**/*"
     - "script/**/*"
     - "db/**/*"
+    - "vendor/bundle/**/*"
 
 Metrics/LineLength:
   Max: 120
