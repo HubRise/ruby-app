@@ -17,9 +17,7 @@ jobs:
 
       - name: Debugging
         run: |
-          bundle exec rubocop -v
-          ls -al .
-          grep rspec .rubocop.yml
+          head .rubocop.yml
 
       - name: Rubocop
         run: bundle exec rubocop -c .rubocop.yml
