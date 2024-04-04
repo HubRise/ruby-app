@@ -27,7 +27,7 @@ RSpec.describe(HubriseApp::Refresher::AppInstance) do
           double(data: ApiFixtures.location_json)
         ).twice
 
-        expect(api_client).to receive(:get_catalog).with("catalog_idX").and_return(
+        expect(api_client).to receive(:get_catalog).with("catalog_idX", hide_data: true).and_return(
           double(data: ApiFixtures.catalog_json)
         )
 
