@@ -17,3 +17,6 @@ spec/dummy/tmp/
 
 # IDE files
 /.idea
+
+# DB
+spec/dummy/db/*.sqlite3
