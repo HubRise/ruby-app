@@ -1,4 +1,4 @@
-default: &default
+default:
   hubrise_client_id:     'dummy_id'
   hubrise_client_secret: 'dummy_secret'
   hubrise_oauth_host:    'dummy.hubrise.host'
@@ -6,9 +6,3 @@ default: &default
   hubrise_api_host:      'dummy.hubrise.host'
   hubrise_api_port:      4000
   hubrise_use_https:     false
-
-development:
-  <<: *default
-
-test:
-  <<: *default

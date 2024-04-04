@@ -1,7 +1,6 @@
 AllCops:
   Exclude:
     - "bin/**/*"
-    - "spec/dummy/**/*"
     - "script/**/*"
     - "db/**/*"
     - 'vendor/bundle/**/*'
