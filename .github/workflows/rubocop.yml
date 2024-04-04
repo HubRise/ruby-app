@@ -15,11 +15,5 @@ jobs:
           ruby-version: 3.1.4
           bundler-cache: true
 
-      - name: Debugging
-        run: |
-          bundle exec rubocop -v
-          ls -al .
-          grep LineLength .rubocop.yml
-
       - name: Rubocop
-        run: bundle exec rubocop -c .rubocop.yml
+        run: bundle exec rubocop
