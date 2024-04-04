@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module HubriseApp
-  module OauthController
+  class OauthController
     module ActionAuthorizeCallback
       # authorize access to specific app_instance (expirable)
       def authorize_callback

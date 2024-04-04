@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module HubriseApp
-  module OauthController
+  class OauthController
     module ActionLoginCallback
       def login_callback
         user = HubriseApp::Refresher::User.from_api_client(api_client_from_oauth_code)

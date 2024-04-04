@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module HubriseApp
-  module ApplicationController
+  class ApplicationController
     module SessionMethods
       extend ActiveSupport::Concern
       included do

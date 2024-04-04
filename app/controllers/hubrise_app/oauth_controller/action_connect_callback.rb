@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module HubriseApp
-  module OauthController
+  class OauthController
     module ActionConnectCallback
       def connect_callback
         @app_instance = HubriseApp::Services::ConnectAppInstance.run(api_client_from_oauth_code, self)

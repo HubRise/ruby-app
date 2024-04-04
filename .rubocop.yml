@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - "bin/**/*"
     - "script/**/*"
+    - 'db/migrate/*.rb'
     - 'spec/dummy/db/*schema.rb'
     - 'vendor/bundle/**/*'
   DisabledByDefault: true

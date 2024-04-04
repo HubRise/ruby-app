@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module HubriseApp
-  module CallbackController
+  class CallbackController
     module ActionEvent
       def event
         head(200)

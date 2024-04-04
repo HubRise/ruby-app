@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module HubriseApp
-  module ApplicationController
+  class ApplicationController
     module HubriseGatewayMethods
       def hubrise_gateway
         @hubrise_gateway ||= HubriseApp::HubriseGateway.new
