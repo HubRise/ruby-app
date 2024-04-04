@@ -79,6 +79,32 @@ A use case:
 
 TODO
 
+## Publish changes to this gem
+
+1. Make sure all local changes are committed.
+
+2. Increase version in `lib/hubrise_app/version.rb`
+
+3. Tag the repository:
+
+```bash
+VERSION=1.2.0
+git add lib/hubrise_app/version.rb
+git commit -m "Version $VERSION"
+git tag v$VERSION
+git push --tags
+git push
+```
+
+4. Build & publish:
+
+```bash
+rm -f hubrise_app-*.gem
+gem build hubrise_app
+gem push hubrise_app-*.gem
+rm -f hubrise_app-*.gem
+``` 
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
