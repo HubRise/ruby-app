@@ -16,7 +16,10 @@ jobs:
           bundler-cache: true
 
       - name: Debugging
-        run: bundle exec rubocop -v
+        run: |
+          bundle exec rubocop -v
+          ls -al .
+          grep LineLength .rubocop.yml
 
       - name: Rubocop
         run: bundle exec rubocop -c .rubocop.yml
