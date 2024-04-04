@@ -1,16 +1,11 @@
 default: &default
-  adapter:    mysql2
-  username:   root
-  password:   mysql
-  host:       127.0.0.1
-  reconnect:  true
-  encoding:   utf8mb4
+  adapter: sqlite3
 
 development:
   <<: *default
-  database: hubrise_app_dev
+  database: db/hubrise_app_dev.sqlite3
 
 test:
   <<: *default
-  database: hubrise_app_test
+  database: db/hubrise_app_test.sqlite3
 

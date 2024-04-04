@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module HubriseApp
   class ApplicationController < ActionController::Base
     include AppInstanceMethods

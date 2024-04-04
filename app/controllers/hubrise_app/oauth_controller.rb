@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module HubriseApp
   class OauthController < ApplicationController
     include ActionLoginCallback
@@ -8,8 +9,8 @@ module HubriseApp
 
     def current_app_instance
       @app_instance ||= HubriseApp::Services::ResolveAppInstance.run(
-                          AppInstance, api_client_from_oauth_code.app_instance_id, self
-                        )
+        AppInstance, api_client_from_oauth_code.app_instance_id, self
+      )
     end
 
     def api_client_from_oauth_code

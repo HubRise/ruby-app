@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe HubriseApp::Refresher::User do
+RSpec.describe(HubriseApp::Refresher::User) do
   let!(:today) { Date.new(2020).tap(&method(:travel_to)) }
   let(:api_client) do
     double(
@@ -36,7 +37,7 @@ RSpec.describe HubriseApp::Refresher::User do
 
     expect do
       HubriseApp::Refresher::User.run(user, api_client)
-    end.to_not change(User, :count)
+    end.to_not(change(User, :count))
 
     expect(user.reload).to have_attributes(
       hr_id: "user_idX",

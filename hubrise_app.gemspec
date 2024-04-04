@@ -1,4 +1,5 @@
-$LOAD_PATH.push File.expand_path("lib", __dir__)
+# frozen_string_literal: true
+$LOAD_PATH.push(File.expand_path("lib", __dir__))
 
 require "hubrise_app/version"
 
@@ -7,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version     = HubriseApp::VERSION
   spec.authors     = [
     "Antoine Monnier",
-    "Nick Save"
+    "Nick Save",
   ]
   spec.homepage    = "https://github.com/HubRise/ruby-app"
   spec.summary     = "Rails engine to bootstrap a HubRise-based application"
@@ -15,6 +16,6 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "hubrise_client", "~> 2.0.6"
-  spec.add_dependency "rails", "> 5.2.2"
+  spec.add_dependency("hubrise_client", "~> 2.0.10")
+  spec.add_dependency("rails", "~> 7.0.0")
 end

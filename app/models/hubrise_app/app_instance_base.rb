@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module HubriseApp
   class AppInstanceBase < HubriseApp::ApplicationRecord
     self.abstract_class = true

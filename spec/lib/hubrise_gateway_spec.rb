@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe HubriseApp::HubriseGateway do
+RSpec.describe(HubriseApp::HubriseGateway) do
   let(:hubrise_gateway) { HubriseApp::HubriseGateway.new(HubriseApp::CONFIG) }
 
   describe "#build_api_client_from_app_instance" do
@@ -25,4 +26,3 @@ RSpec.describe HubriseApp::HubriseGateway do
     end
   end
 end
-

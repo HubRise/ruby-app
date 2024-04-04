@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 HubriseApp::Engine.routes.draw do
   namespace :hubrise_oauth, controller: "/hubrise_app/oauth" do
     get :connect_callback

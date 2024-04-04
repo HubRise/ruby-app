@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe HubriseApp::CallbackController, type: :controller do
+RSpec.describe(HubriseApp::CallbackController, type: :controller) do
   routes { HubriseApp::Engine.routes }
   let!(:app_instance) { create(:app_instance, hr_id: "hr_id1") }
 

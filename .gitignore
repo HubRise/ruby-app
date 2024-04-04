@@ -1,6 +1,5 @@
 # Bundler
 .bundle/
-Gemfile.lock
 *.gem
 
 # Logfiles
@@ -18,3 +17,6 @@ spec/dummy/tmp/
 
 # IDE files
 /.idea
+
+# DB
+spec/dummy/db/*.sqlite3
