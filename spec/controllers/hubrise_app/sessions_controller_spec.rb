@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe HubriseApp::SessionsController, type: :controller do
+RSpec.describe(HubriseApp::SessionsController, type: :controller) do
   routes { HubriseApp::Engine.routes }
 
   let(:user) { create(:user) }

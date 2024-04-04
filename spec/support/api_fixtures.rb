@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ApiFixtures
   class << self
     def account_json
@@ -7,8 +8,8 @@ class ApiFixtures
         "currency" => "GBP",
         "timezone" => {
           "name" => "Europe/London",
-          "offset" => 0
-        }
+          "offset" => 0,
+        },
       }
     end
 
@@ -19,7 +20,7 @@ class ApiFixtures
         "account" => {
           "id" => "abc",
           "name" => "Some Account",
-          "currency" => "GBP"
+          "currency" => "GBP",
         },
         "address" => "",
         "postal_code" => "",
@@ -27,10 +28,9 @@ class ApiFixtures
         "country" => "GB",
         "timezone" => {
           "name" => "Europe/London",
-          "offset" => 0
+          "offset" => 0,
         },
-        "custom_fields" => {
-        }
+        "custom_fields" => {},
       }
     end
 
@@ -46,15 +46,15 @@ class ApiFixtures
           "options_lists" => [],
           "deals" => [],
           "discounts" => [],
-          "charges" => []
-        }
+          "charges" => [],
+        },
       }
     end
 
     def customer_list_json
       {
         "id" => "ag8u4",
-        "name" => "Some Customer List"
+        "name" => "Some Customer List",
       }
     end
 
@@ -64,7 +64,7 @@ class ApiFixtures
         "last_name" => "Save",
         "email" => "nick@save.com",
         "id" => "user_idX",
-        "locales" => ["en-GB"]
+        "locales" => ["en-GB"],
       }
     end
   end

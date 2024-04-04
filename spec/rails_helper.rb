@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "spec_helper"
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("dummy/config/environment.rb", __dir__)
@@ -12,7 +13,7 @@ begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
-  exit 1
+  exit(1)
 end
 RSpec.configure do |config|
   config.use_transactional_fixtures = true

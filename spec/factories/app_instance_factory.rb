@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 FactoryBot.define do
   factory :app_instance, class: AppInstance do
     hr_id { generate_ref }
@@ -35,11 +36,9 @@ FactoryBot.define do
     end
 
     after(:create) do |app_instance, evaluator|
-      if evaluator.user
-        evaluator.user.user_app_instances.create!(
-          hr_app_instance_id: app_instance.hr_id, refreshed_at: evaluator.refreshed_at
-        )
-      end
+      evaluator.user&.user_app_instances&.create!(
+        hr_app_instance_id: app_instance.hr_id, refreshed_at: evaluator.refreshed_at
+      )
     end
   end
 end

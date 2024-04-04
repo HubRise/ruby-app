@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 module HubriseHelpers
   def stub_hr_oauth_request(code, response_body:, client_id: "dummy_id", client_secret: "dummy_secret")
     stub_request(:post, "http://dummy.hubrise.host:4003/oauth2/v1/token")
-      .with(body: { client_id: client_id, client_secret: client_secret, code: code })
+      .with(body: { client_id:, client_secret:, code: })
       .to_return(body: response_body.to_json)
   end
 

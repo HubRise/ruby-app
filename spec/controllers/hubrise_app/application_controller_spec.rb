@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe HubriseApp::ApplicationController, type: :controller do
+RSpec.describe(HubriseApp::ApplicationController, type: :controller) do
   let(:user) { create(:user) }
 
   describe ".ensure_authenticated!" do
@@ -10,7 +11,7 @@ RSpec.describe HubriseApp::ApplicationController, type: :controller do
       before_action :ensure_authenticated!
 
       def index
-        render plain: :ok
+        render(plain: :ok)
       end
     end
 
@@ -35,7 +36,7 @@ RSpec.describe HubriseApp::ApplicationController, type: :controller do
       before_action :ensure_app_instance_found!
 
       def index
-        render plain: :ok
+        render(plain: :ok)
       end
     end
 

@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe HubriseApp::Refresher::AppInstance do
+RSpec.describe(HubriseApp::Refresher::AppInstance) do
   let!(:today) { Date.new(2020).tap(&method(:travel_to)) }
 
   describe ".run" do
@@ -98,12 +99,11 @@ RSpec.describe HubriseApp::Refresher::AppInstance do
       let(:recently) { today - 1.minute }
       let(:app_instance) do
         create(:app_instance,
-          hr_account_id: "account_idX",
-          hr_location_id: "location_idX",
-          hr_catalog_id: "catalog_idX",
-          hr_customer_list_id: "customer_list_idX",
-          refreshed_at: recently
-        )
+               hr_account_id: "account_idX",
+               hr_location_id: "location_idX",
+               hr_catalog_id: "catalog_idX",
+               hr_customer_list_id: "customer_list_idX",
+               refreshed_at: recently)
       end
 
       it "ignores recently refreshed app resources" do

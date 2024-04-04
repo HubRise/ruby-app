@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -12,5 +13,5 @@ group :test do
 end
 
 group :development do
-  gem "rubocop"
+  gem "rubocop", "1.62.1"
 end
