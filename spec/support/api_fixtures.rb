@@ -6,10 +6,7 @@ class ApiFixtures
         "id" => "abc",
         "name" => "Some Account",
         "currency" => "GBP",
-        "timezone" => {
-          "name" => "Europe/London",
-          "offset" => 0,
-        },
+        "branding" => "BrandingX",
       }
     end
 
