@@ -25,7 +25,7 @@ end
 ## Intro
 
 This gem provides a framework for a Hubrise App with a Resource Based Access.
-This means that each Hubrise User will be able to create a connection (App Instance) to multiple Accounts and Locations. And this connection will be shared with any other Hubrise User that has access to the same reseources on Hubrise side automatically.
+This means that each Hubrise User will be able to create a connection (App Instance) to multiple Accounts and Locations. And this connection will be shared with any other Hubrise User that has access to the same resources on Hubrise side automatically.
 
 ### Note
 
@@ -88,7 +88,7 @@ TODO
 3. Tag the repository:
 
 ```bash
-VERSION=1.2.1
+VERSION=1.2.3
 bundle install
 git add Gemfile.lock
 git add lib/hubrise_app/version.rb
