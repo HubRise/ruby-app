@@ -5,13 +5,13 @@ module HubriseApp
       REFRESH_THRESHOLD = 1.day
 
       class << self
-        def from_api_client(api_client, *args)
+        def from_api_client(api_client, **args)
           hr_id = api_client.public_send(id_key)
           if hr_id
             run(
               model_factory.find_or_initialize_by(hr_id:),
               api_client,
-              *args
+              **args
             )
           end
         end
