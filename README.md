@@ -88,7 +88,7 @@ TODO
 3. Tag the repository:
 
 ```bash
-VERSION=1.2.3
+VERSION=1.2.4
 bundle install
 git add Gemfile.lock
 git add lib/hubrise_app/version.rb
