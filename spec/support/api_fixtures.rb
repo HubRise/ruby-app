@@ -27,6 +27,8 @@ class ApiFixtures
           "name" => "Europe/London",
           "offset" => 0,
         },
+        "cutoff_time": "06:00",
+        "opening_hours" => nil,
         "custom_fields" => {},
       }
     end
