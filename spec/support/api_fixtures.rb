@@ -6,7 +6,6 @@ class ApiFixtures
         "id" => "abc",
         "name" => "Some Account",
         "currency" => "GBP",
-        "branding" => "BrandingX",
       }
     end
 

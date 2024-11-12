@@ -82,7 +82,7 @@ RSpec.describe(HubriseApp::Refresher::AppInstance) do
           aggregate_failures do
             expect(subject.account).to have_attributes(
               hr_id: "account_idX",
-              api_data: a_hash_including("name" => "Some Account", "branding" => "BrandingX"),
+              api_data: a_hash_including("name" => "Some Account"),
               refreshed_at: today
             )
             expect(subject).to have_attributes(
