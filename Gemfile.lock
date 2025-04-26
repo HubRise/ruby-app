@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     hubrise_app (1.2.5)
-      hubrise_client (~> 2.0.10)
-      rails (~> 7.0.0)
+      hubrise_client
+      rails
 
 GEM
   remote: https://rubygems.org/
