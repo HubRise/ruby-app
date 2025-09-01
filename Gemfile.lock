@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hubrise_app (1.2.6)
+    hubrise_app (1.2.7)
       hubrise_client
       rails
 
