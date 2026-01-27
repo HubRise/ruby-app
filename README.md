@@ -99,8 +99,10 @@ bundle exec rspec
 3. Tag the repository:
 
 ```bash
-VERSION=1.2.8
+VERSION=1.2.10
+sed -i "s/VERSION = \".*\"/VERSION = \"$VERSION\"/" lib/hubrise_app/version.rb
 bundle install
+git add README.md
 git add Gemfile.lock
 git add lib/hubrise_app/version.rb
 git commit -m "Version $VERSION"
