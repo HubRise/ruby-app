@@ -11,7 +11,7 @@ module HubriseApp
           }
         end
 
-        def attributes_from_event(event_params)
+        def attributes_from_event(event_params, _api_client)
           {
             api_data: cleanup_api_data(event_params["new_state"]),
           }

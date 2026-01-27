@@ -16,11 +16,11 @@ module HubriseApp
           end
         end
 
-        def from_event(resource, event_params)
+        def from_event(resource, event_params, api_client)
           return if resource.nil?
 
           resource.update!(
-            attributes_from_event(event_params).merge(
+            attributes_from_event(event_params, api_client).merge(
               refreshed_at: Time.now,
             )
           )
@@ -44,7 +44,7 @@ module HubriseApp
           {}
         end
 
-        def attributes_from_event(event_params)
+        def attributes_from_event(event_params, _api_client)
           event_params
         end
 

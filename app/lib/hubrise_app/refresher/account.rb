@@ -15,7 +15,7 @@ module HubriseApp
           }
         end
 
-        def attributes_from_event(event_params)
+        def attributes_from_event(event_params, _api_client)
           {
             api_data: cleanup_api_data(
               if event_params["resource_type"] == "location"

@@ -22,17 +22,17 @@ module HubriseApp
           resource
         end
 
-        def from_event(resource, event_params)
+        def from_event(resource, event_params, api_client)
           case event_params["resource_type"]
           when "account"
-            HubriseApp::Refresher::Account.from_event(resource.account, event_params)
+            HubriseApp::Refresher::Account.from_event(resource.account, event_params, api_client)
           when "location"
-            HubriseApp::Refresher::Location.from_event(resource.location, event_params)
-            HubriseApp::Refresher::Account.from_event(resource.account, event_params)
+            HubriseApp::Refresher::Location.from_event(resource.location, event_params, api_client)
+            HubriseApp::Refresher::Account.from_event(resource.account, event_params, api_client)
           when "catalog"
-            HubriseApp::Refresher::Catalog.from_event(resource.catalog, event_params)
+            HubriseApp::Refresher::Catalog.from_event(resource.catalog, event_params, api_client)
           when "customer_list"
-            HubriseApp::Refresher::CustomerList.from_event(resource.customer_list, event_params)
+            HubriseApp::Refresher::CustomerList.from_event(resource.customer_list, event_params, api_client)
           end
         end
 

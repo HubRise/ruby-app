@@ -129,8 +129,9 @@ RSpec.describe(HubriseApp::Refresher::AppInstance) do
              hr_customer_list_id: "customer_list_idX",
              refreshed_at: yesterday)
     end
+    let(:api_client) { HubriseApp::HubriseGateway.new.build_api_client_from_app_instance(app_instance) }
 
-    subject { HubriseApp::Refresher::AppInstance.from_event(app_instance, event_params) }
+    subject { HubriseApp::Refresher::AppInstance.from_event(app_instance, event_params, api_client) }
 
     describe "with account event" do
       let(:event_params) do
@@ -179,11 +180,17 @@ RSpec.describe(HubriseApp::Refresher::AppInstance) do
       let(:event_params) do
         {
           "resource_type" => "catalog",
-          "new_state" => ApiFixtures.catalog_json.merge("name" => "Updated Catalog"),
+          "id" => "catalog_idX",
         }
       end
 
-      it "updates the catalog" do
+      it "fetches api_data from the client and updates the catalog" do
+        stub_hr_api_request(
+          :get,
+          "v1/catalogs/catalog_idX?hide_data=true",
+          response_body: ApiFixtures.catalog_json.except("data").merge("name" => "Updated Catalog"),
+          access_token: app_instance.access_token
+        )
         subject
         expect(app_instance.catalog.api_data).to include("name" => "Updated Catalog")
         expect(app_instance.catalog.api_data).not_to(have_key("id"))
