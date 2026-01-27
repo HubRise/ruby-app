@@ -16,11 +16,21 @@ module HubriseApp
           end
         end
 
+        def from_event(resource, event_params)
+          return if resource.nil?
+
+          resource.update!(
+            attributes_from_event(event_params),
+            refreshed_at: Time.now,
+          )
+          resource
+        end
+
         def run(resource, api_client, force: false)
           return resource if !stale?(resource) && !force
 
           resource.update!(
-            fetch_attributes(resource, api_client).merge(
+            attributes_from_api_call(resource, api_client).merge(
               refreshed_at: Time.now,
             )
           )
@@ -29,8 +39,12 @@ module HubriseApp
 
         protected
 
-        def fetch_attributes(_resource, _api_client)
+        def attributes_from_api_call(_resource, _api_client)
           {}
+        end
+
+        def attributes_from_event(event_params)
+          event_params
         end
 
         def stale?(resource)

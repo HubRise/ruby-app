@@ -3,7 +3,7 @@ module HubriseApp
   module Refresher
     class User < Base
       class << self
-        def fetch_attributes(_resource, api_client)
+        def attributes_from_api_call(_resource, api_client)
           api_data = api_client.get_user.data
           {
             access_token: api_client.access_token,
