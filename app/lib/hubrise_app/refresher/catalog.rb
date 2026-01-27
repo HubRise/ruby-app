@@ -13,7 +13,7 @@ module HubriseApp
           {
             api_data:
               # Catalog update events do not contain "new_state", so we need to fetch from the API
-              fetch_api_data(event_params["id"], api_client),
+              fetch_api_data(event_params["catalog_id"], api_client),
           }
         end
 

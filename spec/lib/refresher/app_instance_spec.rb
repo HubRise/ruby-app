@@ -180,7 +180,7 @@ RSpec.describe(HubriseApp::Refresher::AppInstance) do
       let(:event_params) do
         {
           "resource_type" => "catalog",
-          "id" => "catalog_idX",
+          "catalog_id" => "catalog_idX",
         }
       end
 
