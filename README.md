@@ -79,6 +79,17 @@ A use case:
 
 TODO
 
+## Run specs
+
+This repository contains a dummy rails app in `spec/dummy` folder, that uses SQLite as DB.
+
+To run specs:
+```bash
+bundle install
+bin/rails db:schema:load
+bundle exec rspec
+```
+
 ## Publish changes to this gem
 
 1. Make sure all local changes are committed.

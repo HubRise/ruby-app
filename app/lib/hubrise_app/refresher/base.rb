@@ -20,8 +20,9 @@ module HubriseApp
           return if resource.nil?
 
           resource.update!(
-            attributes_from_event(event_params),
-            refreshed_at: Time.now,
+            attributes_from_event(event_params).merge(
+              refreshed_at: Time.now,
+            )
           )
           resource
         end
