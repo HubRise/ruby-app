@@ -18,9 +18,9 @@ class ApiFixtures
           "name" => "Some Account",
           "currency" => "GBP",
         },
-        "address" => "",
-        "postal_code" => "",
-        "city" => "",
+        "address" => "13 River Street",
+        "postal_code" => "SE8 3FD",
+        "city" => "London",
         "country" => "GB",
         "timezone" => {
           "name" => "Europe/London",
@@ -28,6 +28,10 @@ class ApiFixtures
         },
         "cutoff_time": "06:00",
         "opening_hours" => nil,
+        "preparation_time" => 15,
+        "order_acceptance" => {
+          "mode" => "normal"
+        },
         "custom_fields" => {},
       }
     end
