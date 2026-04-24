@@ -26,11 +26,11 @@ class ApiFixtures
           "name" => "Europe/London",
           "offset" => 0,
         },
-        "cutoff_time": "06:00",
+        "cutoff_time" => "06:00",
         "opening_hours" => nil,
         "preparation_time" => 15,
         "order_acceptance" => {
-          "mode" => "normal"
+          "mode" => "normal",
         },
         "custom_fields" => {},
       }
