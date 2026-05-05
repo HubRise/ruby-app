@@ -58,6 +58,16 @@ RSpec.describe(HubriseApp::ApplicationController, type: :controller) do
       )
     end
 
+    it "saves the return path in session on a GET request" do
+      get :index, params: { app_instance_id: "wrong" }
+      expect(session[:authorize_return_to]).to eq("/hubrise_app/application?app_instance_id=wrong")
+    end
+
+    it "does not save the return path on non-GET requests" do
+      post :index, params: { app_instance_id: "wrong" }
+      expect(session[:authorize_return_to]).to be_nil
+    end
+
     it "tries to reauthorize if app instance is not fresh" do
       app_instance = create(:app_instance, hr_id: "x_app_instance_id")
       UserAppInstance.create!(hr_user_id: user.hr_id, hr_app_instance_id: app_instance.hr_id, refreshed_at: Time.now - 1.year)

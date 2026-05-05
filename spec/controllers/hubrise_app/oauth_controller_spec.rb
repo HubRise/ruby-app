@@ -79,6 +79,18 @@ RSpec.describe(HubriseApp::OauthController, type: :controller) do
       expect(user.app_instances.all).to eq([app_instance])
     end
 
+    it "redirects to session[:authorize_return_to] if set, then clears it" do
+      session[:user_id] = user.id
+      session[:authorize_return_to] = "/operations/10?app_instance_id=#{app_instance.hr_id}"
+      expect(subject).to redirect_to("/operations/10?app_instance_id=#{app_instance.hr_id}")
+      expect(session[:authorize_return_to]).to be_nil
+    end
+
+    it "redirects to open path if no authorize_return_to is set" do
+      session[:user_id] = user.id
+      expect(subject).to redirect_to("/hubrise_open?app_instance_id=#{app_instance.hr_id}")
+    end
+
     context "with invalid app instance" do
       let(:api_client) { double(app_instance_id: "wrong_id") }
 

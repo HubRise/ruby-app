@@ -13,8 +13,8 @@ module HubriseApp
 
       def current_app_instance
         if current_user
-          @app_instance ||= HubriseApp::Services::ResolveAppInstance.run(current_user.app_instances, hr_app_instance_id,
-                                                                         self)
+          @app_instance ||=
+            HubriseApp::Services::ResolveAppInstance.run(current_user.app_instances, hr_app_instance_id, self)
         end
       end
 
@@ -22,6 +22,7 @@ module HubriseApp
         if hr_app_instance_id.blank?
           render(plain: "Something went wrong. Please try to reopen from Hubrise Dashboard.")
         elsif current_app_instance.nil?
+          session[:authorize_return_to] = request.fullpath if request.get?
           redirect_to(build_hubrise_oauth_authorize_url, allow_other_host: true)
         end
       end

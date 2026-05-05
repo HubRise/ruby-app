@@ -7,7 +7,7 @@ module HubriseApp
         ensure_authenticated! do
           if current_app_instance
             HubriseApp::Services::AssignAppInstance.run(current_user, current_app_instance, self)
-            redirect_to(build_hubrise_open_url)
+            redirect_to(session.delete(:authorize_return_to) || build_hubrise_open_url)
           else
             render(plain: "Something went wrong. Please try to reinstall the app")
           end
