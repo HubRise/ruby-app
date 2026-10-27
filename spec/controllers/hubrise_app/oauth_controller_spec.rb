@@ -29,6 +29,12 @@ RSpec.describe(HubriseApp::OauthController, type: :controller) do
     it "redirects to open path" do
       expect(subject).to redirect_to("/hubrise_open")
     end
+
+    it "redirects to session[:return_to] if set, then clears it" do
+      session[:return_to] = "/operations/10?app_instance_id=some_id"
+      expect(subject).to redirect_to("/operations/10?app_instance_id=some_id")
+      expect(session[:return_to]).to be_nil
+    end
   end
 
   describe "GET connect_callback" do
@@ -79,14 +85,14 @@ RSpec.describe(HubriseApp::OauthController, type: :controller) do
       expect(user.app_instances.all).to eq([app_instance])
     end
 
-    it "redirects to session[:authorize_return_to] if set, then clears it" do
+    it "redirects to session[:return_to] if set, then clears it" do
       session[:user_id] = user.id
-      session[:authorize_return_to] = "/operations/10?app_instance_id=#{app_instance.hr_id}"
+      session[:return_to] = "/operations/10?app_instance_id=#{app_instance.hr_id}"
       expect(subject).to redirect_to("/operations/10?app_instance_id=#{app_instance.hr_id}")
-      expect(session[:authorize_return_to]).to be_nil
+      expect(session[:return_to]).to be_nil
     end
 
-    it "redirects to open path if no authorize_return_to is set" do
+    it "redirects to open path if no return_to is set" do
       session[:user_id] = user.id
       expect(subject).to redirect_to("/hubrise_open?app_instance_id=#{app_instance.hr_id}")
     end
